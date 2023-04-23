@@ -9,7 +9,7 @@ const applySearch = async function(query){
    try {
     query = query.trim().split(' ').filter( e => e !== "").join(' ').capitalize();
 
-    const firstRecipe = await Dog.findAll({
+    const firstDogs = await Dog.findAll({
         attributes:["id", "name", "weight"],
         where:{
             name:query
@@ -22,10 +22,10 @@ const applySearch = async function(query){
             }
         }
     })
-    //if(firstRecipe.length)return firstRecipe.concat(true)
+    if(firstDogs.length)return firstDogs;
 
     query=query.split(' ');
-    const secondRecipe = await Dog.findAll({
+    const secondDogs = await Dog.findAll({
         attributes:["id", "name", "weight"],
         where:{
             name:{
@@ -43,9 +43,9 @@ const applySearch = async function(query){
             }
         }
     });
-    //if(secondRecipe.length) return secondRecipe.concat(true)
+    if(secondDogs.length) return secondDogs
 
-    const thirdRecipe = await Dog.findAll({
+    const thirdDogs = await Dog.findAll({
         attributes:["id", "name", "weight"],
         where:{
             name:{
@@ -60,7 +60,7 @@ const applySearch = async function(query){
             }
         }
     })
-    return firstRecipe.concat(secondRecipe.concat(thirdRecipe))
+    return thirdDogs;
     }catch(err){
         console.log(err.message)
     }
