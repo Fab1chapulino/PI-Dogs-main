@@ -15,7 +15,7 @@ function App() {
         <Route exact path="/">
             <Landing/>
         </Route>
-        <Route path="/home">
+        <Route path="/home/:page">
           <Home/>
         </Route>
         <Route path="/create">

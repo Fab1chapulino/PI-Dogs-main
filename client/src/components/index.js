@@ -1,5 +1,5 @@
 import Landing from "./Landing.jsx";
-import Home from "./Home.jsx";
+import Home from "./Home/Home.jsx";
 import Nav from "./Nav.jsx";
 import Create from "./formCreate.jsx";
 import Detail from "./Detail.jsx";

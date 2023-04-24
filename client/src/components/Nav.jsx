@@ -25,7 +25,7 @@ export default function Nav(){
     }
 
     return (<div>
-        <NavLink to="/Home">Home</NavLink>
+        <NavLink to="/Home/1">Home</NavLink>
         <NavLink to="/create">Create</NavLink>
         <input type="search" value={query} onChange={e=>handleInputChange(e)}/><label onClick={onSearch}>Search</label>
     </div>)
