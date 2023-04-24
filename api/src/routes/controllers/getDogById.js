@@ -16,7 +16,7 @@ module.exports = async (req,res)=>{
                 image:detail.image.url,
                 height:detail.height.imperial,
                 wight:detail.weight.imperial,
-                temperament:detail.temperament,
+                temperaments:detail.temperament,
                 life_span:detail.life_span
             }
             res.status(200).json(dog);

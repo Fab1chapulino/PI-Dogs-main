@@ -12,14 +12,14 @@ module.exports= async (req,res)=>{
                 id:dog.id,
                 name:dog.name,
                 image:dog.image.url,
-                temperament:dog.temperament,
+                temperaments:dog.temperament,
                 weight:dog.weight.imperial
             }
         })
         console.log(apiDogs.length, "apiDogs")
 
         const dbDogs = await Dog.findAll({
-            attributes:["name", "image", "weight"],
+            attributes:["id","name", "image", "weight"],
             include:{
                 model:Temperament,
                 attributes:["name"],
