@@ -14,8 +14,17 @@ const postDog= async (req, res)=>{
             life_span,
             temperaments
         } = req.body;
+        if(!temperaments.length){
+            throw new Error("CANNOT POST DOG")
+        }
+         
+        /* temperaments=temperaments.map(temp=>parseInt(temp))
+        console.log(temperaments,"temperaments") */
 
         name=name.capitalize();
+        if(typeof height==="object")height=Object.values(height).join(" - ")
+        if(typeof weight==="object")weight=Object.values(weight).join(" - ")
+        if(typeof life_span==="object")life_span=Object.values(life_span).join(" - ")
 
         const newDog = await Dog.create({
             name,
@@ -27,7 +36,7 @@ const postDog= async (req, res)=>{
         await newDog.addTemperaments(temperaments)
         res.status(200).send("POSTED DOG SUCCESFULLY")
     }catch(err){
-        console.log(err.message)
+        console.log(err.message, "failed")
         res.status(400).send("CANNOT POST DOG")
     }
 }

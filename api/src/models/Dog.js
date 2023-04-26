@@ -11,12 +11,18 @@ module.exports = (sequelize) => {
     },
     image:{
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: false,
+      validate:{
+        notEmpty:true
+      }
     },
     name: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique:true
+      unique:true,
+      validate:{
+        notEmpty:true
+      }
     },
     height:{
       type: DataTypes.STRING,
