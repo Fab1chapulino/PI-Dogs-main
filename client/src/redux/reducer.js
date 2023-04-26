@@ -1,6 +1,7 @@
 const initialState={
     allDogs:[],
-    searchDogs:[]
+    searchDogs:[],
+    message:""
 }
 
 export default function rootReducer( state=initialState, {type, payload} ){
@@ -14,6 +15,12 @@ export default function rootReducer( state=initialState, {type, payload} ){
             return {
                 ...state,
                 allDogs:[...payload]
+            }
+        case "GENERATE_MESSAGE":
+            console.log(payload)
+            return {
+                ...state,
+                message:payload
             }
         default:
             return state;

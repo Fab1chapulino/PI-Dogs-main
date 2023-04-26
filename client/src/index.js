@@ -8,7 +8,7 @@ import {Provider} from "react-redux";
 import store from "./redux/store";
 import {getDogsThunk} from "./redux/thunkFunctions.js";
 
-store.dispatch(getDogsThunk)
+//store.dispatch(getDogsThunk)
 
 ReactDOM.render(
   <React.StrictMode>

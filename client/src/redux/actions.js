@@ -10,3 +10,9 @@ export function getDogs(dogs){
         payload:dogs
     }
 }
+export function generateMessage(message){
+    return {
+        type:"GENERATE_MESSAGE",
+        payload:message
+    }
+}
