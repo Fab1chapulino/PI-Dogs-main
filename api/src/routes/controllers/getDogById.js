@@ -15,7 +15,7 @@ module.exports = async (req,res)=>{
                 name:detail.name,
                 image:detail.image.url,
                 height:detail.height.imperial,
-                wight:detail.weight.imperial,
+                weight:detail.weight.imperial,
                 temperaments:detail.temperament,
                 life_span:detail.life_span
             }
