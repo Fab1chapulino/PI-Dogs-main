@@ -1,4 +1,4 @@
-import {getDogsByName, getDogs, generateMessage} from "./actions.js";
+import {getDogsByName, getDogs, generateMessage, geTemperaments} from "./actions.js";
 import axios from "axios";
 
 export function searchDogs(query){
@@ -32,5 +32,15 @@ export function postDogThunk(breed){
             console.log(err, "err")
             dispatch(generateMessage("CANNOT POST DOG"))
         }
+    }
+}
+export async function getTemperamentsThunk(dispatch, getState){
+    try{
+        const {data} = await axios.get("http://localhost:3001/temperaments")
+        let tempNames = data.map( diet => diet.name)
+        console.log(tempNames)
+        dispatch(geTemperaments(tempNames))
+    }catch(err){
+        console.log(err.message)
     }
 }

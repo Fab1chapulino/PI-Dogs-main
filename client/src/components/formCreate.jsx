@@ -8,11 +8,11 @@ import {useHistory} from "react-router-dom";
 export default function Create(){
     //hooks
     const dispatch = useDispatch();
-    const message = useSelector(s=>s.message)
+    const {message, temperaments} = useSelector(s=>s)
     const history = useHistory();
     //states
     const [submit, setSubmit]=useState(false);
-    const [temperaments, setTemperaments] = useState([]);
+   // const [temperaments, setTemperaments] = useState([]);
     const [errors, setErrors] = useState({
         name:"",
         image:"",
@@ -120,21 +120,7 @@ export default function Create(){
         if(submit) dispatch(postDogThunk(input))
     }
 
-    //useEffects
-    useEffect(()=>{
-        async function fetchTemps(){
-            try{
-                const {data} = await axios.get('http://localhost:3001/temperaments');
-                console.log(data, "data")
-                let temps = data.map(temp=> temp.name);
-                setTemperaments([...temps].slice(0,5))
-            }catch(err){
-                console.log(err.message)
-            }
-        }
-        fetchTemps()
-
-    },[]) 
+    /* -----------------useEffects-------------------- */
     useEffect(()=>{
         if(Object.values(errors).find(v=>v.length)){
             setSubmit(false)
@@ -142,6 +128,7 @@ export default function Create(){
             setSubmit(true)
         }
     },[errors])
+
     useEffect(()=>{
         console.log(message, "message")
            if(message==="CANNOT POST DOG"){

@@ -6,7 +6,8 @@ const initialState={
     alphaDescend:[],
     weightAscend:[],
     weightDescend:[],
-    tempsApplied:[],
+
+    temperaments:[],
 
     searchDogs:[],
     message:""
@@ -74,7 +75,7 @@ export default function rootReducer( state=initialState, {type, payload} ){
             }
         case "FILTER/ORDER":
             const {temps, origin, order} = payload;
-            const {tempsApplied, allDogsCopy, allDogs} = state;
+            const {allDogsCopy} = state;
             let appliedFilters = [...order];
 
             if(!appliedFilters.length) appliedFilters = [...allDogsCopy]
@@ -107,6 +108,11 @@ export default function rootReducer( state=initialState, {type, payload} ){
                             tempsApplied:[...temps]
                         }
                 }
+        case "GET_TEMPERAMENTS":
+            return {
+                ...state,
+                temperaments:[...payload.slice(0,6)]
+            }
         default:
             return state;
     }

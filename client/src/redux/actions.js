@@ -22,9 +22,9 @@ export function filterOrder(options){
         payload:options
     }
 }
-/* export function order(orders){
+export function geTemperaments(temps){
     return {
-        type:"ORDER",
-        payload:orders
+        type:"GET_TEMPERAMENTS",
+        payload:temps
     }
-} */
+}

@@ -6,9 +6,10 @@ import reportWebVitals from './reportWebVitals';
 import {BrowserRouter} from 'react-router-dom';
 import {Provider} from "react-redux";
 import store from "./redux/store";
-import {getDogsThunk} from "./redux/thunkFunctions.js";
+import {getDogsThunk, getTemperamentsThunk} from "./redux/thunkFunctions.js";
 
-store.dispatch(getDogsThunk)
+store.dispatch(getDogsThunk);
+store.dispatch(getTemperamentsThunk);
 
 ReactDOM.render(
   <React.StrictMode>

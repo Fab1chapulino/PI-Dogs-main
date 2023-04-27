@@ -6,9 +6,9 @@ import {filterOrder} from "../../redux/actions.js";
 export default function Options(){
     //hooks
     const dispatch = useDispatch();
-    const {alphaAscend, alphaDescend, weightAscend, weightDescend} = useSelector( s => s)
+    const {alphaAscend, alphaDescend, weightAscend, weightDescend, temperaments} = useSelector( s => s)
+
     //States
-    const [temps, setTemps] = useState([])
     const [filters_orders, setFilters_Orders] = useState({
         temps:[],
         origin:"Show All",
@@ -18,9 +18,10 @@ export default function Options(){
     function handleFiltersOrders(e, orderApplied=[]){
        // console.log(filters, "<--- filters")
         const {name, value, checked} = e.target;
-
+        console.log(name, "<----------- name")
         switch(name){
             case "temps":
+                console.log(value, "applyFilters <---------------")
             checked?
             setFilters_Orders({
                 ...filters_orders,
@@ -38,29 +39,25 @@ export default function Options(){
                     origin:value
                 })
             break;
-
+            case "order":
+                setFilters_Orders({
+                    ...filters_orders,
+                    order:[...orderApplied]
+                })
+            break;
             default:
                 setFilters_Orders({...filters_orders})
         } 
 
-        setFilters_Orders({
+        /* setFilters_Orders({
             ...filters_orders,
             order:[...orderApplied]
-        })
+        }) */
     }
 
      /* ----------------------useEffect------------------- */
-     useEffect(()=>{
-        async function fetchDiets(){
-            const {data} = await axios.get("http://localhost:3001/temperaments");
-            console.log(data)
-            let tempNames = data.map( diet => diet.name)
-            setTemps(tempNames.slice(0, 7))
-        }
-        fetchDiets()
-    },[])
-
     useEffect(()=>{
+        console.log(filters_orders, "<----------Filters")
         dispatch(filterOrder(filters_orders))
     },[filters_orders]) 
 
@@ -79,7 +76,7 @@ export default function Options(){
                     </div>
               </div>
                 <div>
-                    {temps.length && temps.map( (temp, i) => {
+                    {temperaments.length && temperaments.map( (temp, i) => {
                         return <div key={i}>
                             <input type="checkbox" name="temps" id={temp} value={temp} onChange={(e)=> handleFiltersOrders(e)}/>
                             <label for={temp}>{temp}</label>
@@ -92,11 +89,11 @@ export default function Options(){
         <div>
          <h3>Order By</h3>
          <div>
-            <button name="alphaAscend" onClick={(e)=>handleFiltersOrders(e, alphaAscend)}>Alphabetically</button><br/>
-            <button name="alphaDescend" onClick={(e)=>handleFiltersOrders(e, alphaDescend)}>Alphabetically-reverse</button><br/>
-            <button name="weightAscend" onClick={(e)=>handleFiltersOrders(e, weightAscend)}>Weight-Ascending</button><br/>
-            <button name="weightDescend" onClick={(e)=>handleFiltersOrders(e, weightDescend)}>Weight-Descending</button><br/>
-            <button name="defaultOrder" onClick={(e)=>handleFiltersOrders(e, [])}>Default</button>
+            <button name="order" onClick={(e)=>handleFiltersOrders(e, alphaAscend)}>Alphabetically</button><br/>
+            <button name="order" onClick={(e)=>handleFiltersOrders(e, alphaDescend)}>Alphabetically-reverse</button><br/>
+            <button name="order" onClick={(e)=>handleFiltersOrders(e, weightAscend)}>Weight-Ascending</button><br/>
+            <button name="order" onClick={(e)=>handleFiltersOrders(e, weightDescend)}>Weight-Descending</button><br/>
+            <button name="order" onClick={(e)=>handleFiltersOrders(e, [])}>Default</button>
          </div>
             
 
