@@ -1,4 +1,5 @@
 import Cards from "./Cards";
+import Options from "./Options";
 import {useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 import {useParams, NavLink, useHistory} from "react-router-dom";
@@ -20,19 +21,25 @@ export default function Home(){
     //useEffects
     useEffect(()=>{
         let pagesVariable = [];
-        for(let i=1; i<Math.ceil(allDogs.length/8); i++){
+        for(let i=1; i<=Math.ceil(allDogs.length/8); i++){
             pagesVariable.push(i)
         }
         setPagesCP([...pagesVariable])
     },[allDogs])
 
      useEffect(()=>{
-        setPages([...pagesCP.slice(page-1, page+6)])
-        console.log(pages, "<----pages")
+        if(pagesCP.slice(page-1, page+6).length<7){
+            console.log(pagesCP.slice(page-1, page+6).length)
+            setPages([...pagesCP.slice(pagesCP.length-7, pagesCP.length)])
+        }else{
+            setPages([...pagesCP.slice(page-1, page+6)])
+        }
+
     },[pagesCP]) 
     
     //Extra Logic
     function goLeft(){
+        console.log(pages)
        if(page!==1){
         if(page===pages[0]){    
             setPages([...pagesCP.slice(page-2, page+5)])
@@ -41,7 +48,8 @@ export default function Home(){
        } 
     }
     function goRight(){
-        if(page !== Math.ceil(allDogs.length/8)){
+        console.log(pages)
+        if( page !== Math.ceil(allDogs.length/8) ){
             if(page===pages[pages.length-1]){
                 setPages([...pagesCP.slice(page-6, page+1)])
             }  
@@ -51,6 +59,7 @@ export default function Home(){
 
 
     return (<div>
+        <Options />
             <div>
                 <span onClick={goLeft}>{left}</span>
                 {

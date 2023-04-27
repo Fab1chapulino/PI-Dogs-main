@@ -16,3 +16,15 @@ export function generateMessage(message){
         payload:message
     }
 }
+export function filterOrder(options){
+    return {
+        type:"FILTER/ORDER",
+        payload:options
+    }
+}
+/* export function order(orders){
+    return {
+        type:"ORDER",
+        payload:orders
+    }
+} */
