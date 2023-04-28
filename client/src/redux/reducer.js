@@ -10,7 +10,17 @@ const initialState={
     temperaments:[],
 
     searchDogs:[],
-    message:""
+    
+    error:{
+        message:"",
+        component:"",
+        status:null
+    },
+    message:{
+        content:"",
+        component:"",
+        status:null
+    }
 }
 
 export default function rootReducer( state=initialState, {type, payload} ){
@@ -67,11 +77,20 @@ export default function rootReducer( state=initialState, {type, payload} ){
                 })],
 
             }
-        case "GENERATE_MESSAGE":
-            console.log(payload)
+        case "GENERATE_ERROR":
+            console.log(payload, "<--------Error")
             return {
                 ...state,
-                message:payload
+                error:{
+                    ...payload
+                }
+            }
+        case "GENERATE_MESSAGE":
+            return {
+                ...state,
+                message:{
+                    ...payload
+                }
             }
         case "FILTER/ORDER":
             const {temps, origin, order} = payload;
@@ -83,8 +102,6 @@ export default function rootReducer( state=initialState, {type, payload} ){
                 temps.forEach(temp=>{
                         appliedFilters = appliedFilters.filter( e => e.temperaments && e.temperaments.includes(temp))
                     })
-
-            //if(appliedFilters === allDogsCopy) appliedFilters = [...allDogs];
 
                 switch (origin){
                     case "Created":

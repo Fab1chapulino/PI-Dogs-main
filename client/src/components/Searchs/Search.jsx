@@ -6,7 +6,7 @@ import {useState, useEffect} from "react";
 export default function Search(){
     //States
     const [results, setResults]= useState([])
-    const searchDogs = useSelector( s=> s.searchDogs);
+    const {searchDogs, error} = useSelector( s=> s);
     //hooks
     const history = useHistory();
     //useEffects
@@ -15,9 +15,20 @@ export default function Search(){
     },[searchDogs])
 
     return (<div>
-        <div>
-        <button onClick={()=>history.go(-1)}>Go back</button>
+        {
+            
+        error.component==="search" && error.status===400
+        ?<h1>{error.message}</h1>
+        :<div>
+            <div>
+                <button onClick={()=>history.go(-1)}>Go back</button>
+            </div>
+            <div>
+                {results.length && <Results results={results} />}
+            </div>
         </div>
-       {results.length && <Results results={results} />}
+       
+        }
+        
     </div>)
 }

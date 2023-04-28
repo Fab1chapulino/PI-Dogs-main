@@ -1,4 +1,4 @@
-import {getDogsByName, getDogs, generateMessage, geTemperaments} from "./actions.js";
+import {getDogsByName, getDogs, generateError,generateMessage, geTemperaments} from "./actions.js";
 import axios from "axios";
 
 export function searchDogs(query){
@@ -7,30 +7,45 @@ export function searchDogs(query){
             const {data} = await axios.get(`http://localhost:3001/dogs/name?query=${query}`);
             //console.log(data);
             dispatch(getDogsByName(data));
-        }catch(err){
-            console.log(err.message)
-        }
+         }catch(error){
+            dispatch(generateError({
+                message:error.response.data,
+                component:"search",
+                status:error.response.status
+            }))
+        } 
       
     }
 }
 export async function getDogsThunk(dispatch, getState){
     try{
         const {data} = await axios.get("http://localhost:3001/dogs")
-        console.log(data)
         dispatch(getDogs(data))
     }catch(err){
-        console.log(err.message)
+        dispatch(generateError({
+            message:err.response.data,
+            component:"Cards",
+            status:err.response.status
+        }))
     }
 }
 export function postDogThunk(breed){
     return async function(dispatch, getState){
         try{
             const {data} = await axios.post("http://localhost:3001/dogs", breed);
-            console.log(data,"data")
-            dispatch(generateMessage(data))
+            dispatch(getDogsThunk)
+            dispatch(generateMessage({
+                content:data,
+                component:"CreateForm",
+                status:200
+            }))
         }catch(err){
             console.log(err, "err")
-            dispatch(generateMessage("CANNOT POST DOG"))
+            dispatch(generateError({
+                message:err.response.data,
+                component:"CreateForm",
+                status:err.response.status
+            }))
         }
     }
 }

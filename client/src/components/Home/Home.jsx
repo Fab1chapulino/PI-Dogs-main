@@ -13,7 +13,8 @@ export default function Home(){
     const [pagesCP, setPagesCP]=useState([]);
     //hooks
     const history = useHistory();
-    const allDogs = useSelector(s=>s.allDogs);
+    const {allDogs,error} = useSelector(s=>s);
+
     let {page}  = useParams();
     page=parseInt(page);
     const dogs = allDogs.slice((page-1)*8, page*8)
@@ -59,6 +60,10 @@ export default function Home(){
 
 
     return (<div>
+        {/* {error.status === 200 && <h2>{error.message}</h2>} */}
+        {/* {error.status===500
+        ?<h1>{error.message}</h1>
+        : */}<div>
         <Options />
             <div>
                 <span onClick={goLeft}>{left}</span>
@@ -70,8 +75,8 @@ export default function Home(){
                 }
                 <span onClick={goRight}>{right}</span>
             </div>
-        
-        {dogs.length && <Cards dogs={dogs}/>}
+
+            {dogs.length && <Cards dogs={dogs}/>}
 
             <div>
                 <span  onClick={goLeft}>{left}</span>
@@ -83,5 +88,7 @@ export default function Home(){
                 }
                 <span onClick={goRight}>{right}</span>
             </div>
+        </div>
+       {/*  } */}
     </div>)
 }

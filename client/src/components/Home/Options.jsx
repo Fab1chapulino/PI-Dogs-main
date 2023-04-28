@@ -18,10 +18,8 @@ export default function Options(){
     function handleFiltersOrders(e, orderApplied=[]){
        // console.log(filters, "<--- filters")
         const {name, value, checked} = e.target;
-        console.log(name, "<----------- name")
         switch(name){
             case "temps":
-                console.log(value, "applyFilters <---------------")
             checked?
             setFilters_Orders({
                 ...filters_orders,
@@ -48,16 +46,10 @@ export default function Options(){
             default:
                 setFilters_Orders({...filters_orders})
         } 
-
-        /* setFilters_Orders({
-            ...filters_orders,
-            order:[...orderApplied]
-        }) */
     }
 
      /* ----------------------useEffect------------------- */
     useEffect(()=>{
-        console.log(filters_orders, "<----------Filters")
         dispatch(filterOrder(filters_orders))
     },[filters_orders]) 
 

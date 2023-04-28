@@ -10,10 +10,16 @@ export function getDogs(dogs){
         payload:dogs
     }
 }
-export function generateMessage(message){
+export function generateError(error){
+    return {
+        type:"GENERATE_ERROR",
+        payload:error
+    }
+}
+export function generateMessage(content){
     return {
         type:"GENERATE_MESSAGE",
-        payload:message
+        payload:content
     }
 }
 export function filterOrder(options){

@@ -1,18 +1,18 @@
 import {useState, useEffect} from "react";
-import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
-import {postDogThunk} from "../redux/thunkFunctions.js"
+import {postDogThunk} from "../redux/thunkFunctions.js";
+import {generateMessage} from "../redux/actions.js";
 import validate from "../validations.js";
 import {useHistory} from "react-router-dom";
 
 export default function Create(){
     //hooks
     const dispatch = useDispatch();
-    const {message, temperaments} = useSelector(s=>s)
+    const {error,message, temperaments} = useSelector(s=>s)
     const history = useHistory();
     //states
     const [submit, setSubmit]=useState(false);
-   // const [temperaments, setTemperaments] = useState([]);
+   // const [message, setMessage]=useState(error)
     const [errors, setErrors] = useState({
         name:"",
         image:"",
@@ -38,7 +38,7 @@ export default function Create(){
             maxLife:"16"
         }
     })
-
+    
     function generateErrors(e){
         const {id, value, name}= e.target;
         /* Temperaments */
@@ -78,13 +78,10 @@ export default function Create(){
                     })[name]
                 })
             }
-            console.log(errors)
-        
     }
 
     function handleInputChange(e){
         const {id, value, name} = e.target;
-        //console.log(name, "name")
         if(name==="temperaments"){
             //console.log(value, "value")
             e.target.checked
@@ -130,19 +127,27 @@ export default function Create(){
     },[errors])
 
     useEffect(()=>{
-        console.log(message, "message")
-           if(message==="CANNOT POST DOG"){
-                console.log(input)
-                setErrors(validate(input))
-            }else if(message==="POSTED DOG SUCCESFULLY"){
+        if(message.component === "CreateForm"){
+            
+                /* dispatch(generateMessage({
+                    message:message.content,
+                    component:"Cards",
+                    status:message.status
+                })) */
                 history.push("/home/1")
-                window.location.reload()
             }
     },[message])
+
+    useEffect(()=>{
+            if(error.status === 400){
+                setErrors(validate(input))
+            }
+    },[error])
 
 
     //Rendering
     return (<div>
+        {error.component==="CreateForm" && error.status === 400? <h2>{error.message}</h2>:null}
         <h1>Este es el form create</h1>
         <form onSubmit={(e)=>handleSubmit(e)}>
             <div>
