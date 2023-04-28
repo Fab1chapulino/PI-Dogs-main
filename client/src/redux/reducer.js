@@ -10,7 +10,7 @@ const initialState={
     temperaments:[],
 
     searchDogs:[],
-    
+
     error:{
         message:"",
         component:"",
@@ -20,6 +20,11 @@ const initialState={
         content:"",
         component:"",
         status:null
+    },
+    options_config:{
+        temps:[],
+        origin:"",
+        order:[]
     }
 }
 
@@ -98,7 +103,7 @@ export default function rootReducer( state=initialState, {type, payload} ){
             let appliedFilters = [...order];
 
             if(!appliedFilters.length) appliedFilters = [...allDogsCopy]
-
+                console.log(temps, "<-------temps")
                 temps.forEach(temp=>{
                         appliedFilters = appliedFilters.filter( e => e.temperaments && e.temperaments.includes(temp))
                     })
@@ -109,20 +114,32 @@ export default function rootReducer( state=initialState, {type, payload} ){
                     return {
                         ...state,
                         allDogs:[...created],
-                        tempsApplied:[...temps]
+                        options_config:{
+                            temps:[...temps],
+                            origin:origin,
+                            order:[...order]
+                        }
                     }
                     case "Not Created":
                         let notCreated = appliedFilters.filter( e => typeof e.id === "number");
                         return {
                             ...state,
                             allDogs:[...notCreated],
-                            tempsApplied:[...temps]
+                            options_config:{
+                                temps:[...temps],
+                                origin:origin,
+                                order:[...order]
+                            }
                         }
                     default:
                         return {
                             ...state,
                             allDogs:[...appliedFilters],
-                            tempsApplied:[...temps]
+                            options_config:{
+                                temps:[...temps],
+                                origin:origin,
+                                order:[...order]
+                            }
                         }
                 }
         case "GET_TEMPERAMENTS":

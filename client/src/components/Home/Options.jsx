@@ -1,12 +1,11 @@
 import {useState, useEffect} from "react";
-import axios from "axios";
 import {useDispatch, useSelector} from "react-redux";
 import {filterOrder} from "../../redux/actions.js";
 
 export default function Options(){
     //hooks
     const dispatch = useDispatch();
-    const {alphaAscend, alphaDescend, weightAscend, weightDescend, temperaments} = useSelector( s => s)
+    const {alphaAscend, alphaDescend, weightAscend, weightDescend, temperaments, options_config} = useSelector( s => s)
 
     //States
     const [filters_orders, setFilters_Orders] = useState({
@@ -49,7 +48,13 @@ export default function Options(){
     }
 
      /* ----------------------useEffect------------------- */
+     useEffect(()=>{
+        console.log(options_config, "<------options_config")
+        setFilters_Orders(options_config)
+     },[])
+
     useEffect(()=>{
+        console.log(filters_orders, "<-----filters_orders")
         dispatch(filterOrder(filters_orders))
     },[filters_orders]) 
 
@@ -60,7 +65,7 @@ export default function Options(){
              <div >
                     <div><label id="diets">By diets</label></div>  
                     <div>
-                        <select name="origin" onChange={(e)=>handleFiltersOrders(e)}>
+                        <select name="origin" onChange={(e)=>handleFiltersOrders(e)} defaultValue={filters_orders.origin}>
                         <option value="Show All">Show All</option>
                         <option value="Created">Created</option>
                         <option value="Not Created">Not Created</option>
@@ -70,7 +75,11 @@ export default function Options(){
                 <div>
                     {temperaments.length && temperaments.map( (temp, i) => {
                         return <div key={i}>
-                            <input type="checkbox" name="temps" id={temp} value={temp} onChange={(e)=> handleFiltersOrders(e)}/>
+                            {filters_orders.temps.includes(temp)
+                            ?<input type="checkbox" name="temps" id={temp} value={temp}  checked onChange={(e)=> handleFiltersOrders(e)}/>
+                            :<input type="checkbox" name="temps" id={temp} value={temp} onChange={(e)=> handleFiltersOrders(e)}/>
+                        }
+                            
                             <label for={temp}>{temp}</label>
                         </div>
                     })}
