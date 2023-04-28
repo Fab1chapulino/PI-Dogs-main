@@ -1,7 +1,6 @@
 import {useState, useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {postDogThunk} from "../redux/thunkFunctions.js";
-import {generateMessage} from "../redux/actions.js";
 import validate from "../validations.js";
 import {useHistory} from "react-router-dom";
 
