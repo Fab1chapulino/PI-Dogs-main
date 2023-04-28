@@ -31,6 +31,6 @@ module.exports= async (req,res)=>{
 
         res.status(200).json(dbDogs.concat(apiDogs))
     }catch(err){
-        res.status(500).send("CANNOT GET DOGS");
+        res.status(500).send("CONNECTION ERROR. Please refresh the page.");
     }
 }
