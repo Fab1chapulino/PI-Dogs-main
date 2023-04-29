@@ -9,9 +9,9 @@ export default function Options(){
 
     //States
     const [filters_orders, setFilters_Orders] = useState({
-        temps:[],
-        origin:"Show All",
-        order:[]
+        temps:options_config.temps,
+        origin:options_config.origin,
+        order:options_config.order
     })
 
     function handleFiltersOrders(e, orderApplied=[]){

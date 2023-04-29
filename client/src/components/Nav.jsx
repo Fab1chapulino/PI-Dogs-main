@@ -15,8 +15,10 @@ export default function Nav(){
         const {value} = e.target;
         setQuery(value);
     }
-    function onSearch(){
-        if(query.length){
+    function onSearch(e){
+        const {code, type} = e;
+        console.log(e)
+        if((query.length && type==="click") || (query.length && code==="Enter")){
             dispatch(searchDogs(query));
             if(history.location.pathname !== "/search"){
                 history.push("/search")
@@ -27,6 +29,6 @@ export default function Nav(){
     return (<div>
         <NavLink to="/home/1">Home</NavLink>
         <NavLink to="/create">Create</NavLink>
-        <input type="search" value={query} onChange={e=>handleInputChange(e)}/><label onClick={onSearch}>Search</label>
+        <input type="search" value={query} onChange={e=>handleInputChange(e)} onKeyDown={(e)=>onSearch(e)}/><label onClick={(e)=>onSearch(e)}>Search</label>
     </div>)
 }
