@@ -7,8 +7,6 @@ function App() {
   //Hooks
   const location= useLocation();
   const {error, message} = useSelector(s=>s);
-  console.log(error, "<-------Error message")
-  console.log(message, "<--------message")
 
 
   return (

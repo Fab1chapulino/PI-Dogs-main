@@ -103,7 +103,6 @@ export default function rootReducer( state=initialState, {type, payload} ){
             let appliedFilters = [...order];
 
             if(!appliedFilters.length) appliedFilters = [...allDogsCopy]
-                console.log(temps, "<-------temps")
                 temps.forEach(temp=>{
                         appliedFilters = appliedFilters.filter( e => e.temperaments && e.temperaments.includes(temp))
                     })

@@ -143,10 +143,11 @@ export default function Create(){
             }
     },[error])
 
-
+    console.log(history)
     //Rendering
     return (<div>
         {error.component==="CreateForm" && error.status === 400? <h2>{error.message}</h2>:null}
+        <button onClick={()=>history.goBack()}>Go back</button>
         <h1>Este es el form create</h1>
         <form onSubmit={(e)=>handleSubmit(e)}>
             <div>

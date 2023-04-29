@@ -1,8 +1,6 @@
 import {NavLink} from "react-router-dom";
 
 export default function Result ({id, name, temperaments, weight}){
-    console.log(name, "name")
-    console.log(temperaments, "temperament")
     return (<div>
         <NavLink to={`/detail/${id}`}>
             <h2>{name}</h2>

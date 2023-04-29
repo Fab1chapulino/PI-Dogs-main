@@ -20,8 +20,8 @@ export default function Detail(){
                 ...data
             })
             }catch(err){
-                console.log(err.response.data)
-                setErrorMessage(err.response.data)
+                console.log(err.response)
+                setErrorMessage(err.response)
             }
         }
         
@@ -30,8 +30,8 @@ export default function Detail(){
     },[])
     
     return (<div>
-        {errorMessage.length
-        ?<h1>{errorMessage}</h1>
+        {errorMessage.data
+        ?<h1>{errorMessage.data}</h1>
         :<div>
             {/* <img src={detail.image} alt={detail.name}/> */}
             <button onClick={()=>history.go(-1)}>go Back</button>

@@ -60,10 +60,7 @@ export default function Home(){
 
 
     return (<div>
-        {/* {error.status === 200 && <h2>{error.message}</h2>} */}
-        {/* {error.status===500
-        ?<h1>{error.message}</h1>
-        : */}<div>
+        <div>
         <Options />
             <div>
                 <span onClick={goLeft}>{left}</span>
@@ -89,6 +86,5 @@ export default function Home(){
                 <span onClick={goRight}>{right}</span>
             </div>
         </div>
-       {/*  } */}
     </div>)
 }

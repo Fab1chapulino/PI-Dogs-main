@@ -7,6 +7,11 @@ export function searchDogs(query){
             const {data} = await axios.get(`http://localhost:3001/dogs/name?query=${query}`);
             //console.log(data);
             dispatch(getDogsByName(data));
+            dispatch(generateError({
+                message:"",
+                component:"search",
+                status:200
+            }))
          }catch(error){
             dispatch(generateError({
                 message:error.response.data,
@@ -20,7 +25,13 @@ export function searchDogs(query){
 export async function getDogsThunk(dispatch, getState){
     try{
         const {data} = await axios.get("http://localhost:3001/dogs")
+        console.log(data)
         dispatch(getDogs(data))
+        dispatch(generateError({
+            message:'',
+            component:"Cards",
+            status:200
+        }))
     }catch(err){
         dispatch(generateError({
             message:err.response.data,
@@ -39,6 +50,7 @@ export function postDogThunk(breed){
                 component:"CreateForm",
                 status:200
             }))
+
         }catch(err){
             console.log(err, "err")
             dispatch(generateError({
