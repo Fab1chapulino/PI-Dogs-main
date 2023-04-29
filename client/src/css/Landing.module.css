@@ -1,0 +1,49 @@
+.Landing{
+    background-image:url(assets/cheemsFondOficial.jpg);
+    background-repeat:no-repeat;
+    background-size:cover;
+    object-fit:none;
+    height:100vh;
+    width:100vw;
+    position:fixed;
+    animation-name:moverCheems;
+    animation-duration:10s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+@keyframes moverCheems {
+    from {
+        background-position:0 30%;
+    }
+    to {
+        background-position:0 75%;
+    }
+}
+.landing_center{
+    display:flex;
+    border-radius:2em;
+}
+.welcome{
+    background-color:white;
+    border-radius:2em 0 0 2em;
+    padding:0 2vw;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.goHome{
+    text-decoration:none;
+    color:white;
+    background-color:#003882;
+    padding:1vh 1vw;
+    border-radius:2em;
+}
+.goHome:active{
+    text-decoration:underline;
+}
+.img{
+    border-radius:0 2em 2em 0;
+}

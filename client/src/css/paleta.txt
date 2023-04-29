@@ -1,0 +1,3 @@
+Azul oscurito= #003882
+Azul mas oscuro = #00014D
+panzita del cheems = #99d9ea

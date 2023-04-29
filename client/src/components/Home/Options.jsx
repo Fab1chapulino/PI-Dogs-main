@@ -12,6 +12,7 @@ export default function Options(){
         temps:options_config.temps,
         origin:options_config.origin,
         order:options_config.order
+        
     })
 
     function handleFiltersOrders(e, orderApplied=[]){
