@@ -8,15 +8,15 @@ module.exports = async (req, res)=>{
     try{
         const {query}= req.query
         const {data}= await axios.get(`https://api.thedogapi.com/v1/breeds/search?q=${query}&&api_key=${API_KEY}`)
-        const apiDogs=data.map(dog=>{
+        let apiDogs=data.map(dog=>{
             return {
                 id:dog.id,
                 name:dog.name,
-                //image:dog.image.url,
                 temperaments:dog.temperament,
                 weight:dog.weight.imperial
             }
         })
+        apiDogs = apiDogs.filter( dog => dog.temperaments)
         const dbDogs = await applySearch(query);
         const dogs = dbDogs.concat(apiDogs);
         if(dogs.length){

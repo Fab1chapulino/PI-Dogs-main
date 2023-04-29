@@ -7,7 +7,9 @@ const {Dog, Temperament}= require("../../db");
 module.exports = async (req,res)=>{
     try{
         const {id}=req.params;
+        
         if(id.length<36){
+            console.log(typeof id)
             const {data} = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
             const detail = data.find( doggie => doggie.id==id);
             console.log(detail, "detail")
