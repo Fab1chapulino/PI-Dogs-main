@@ -5,6 +5,7 @@ import Create from "./formCreate.jsx";
 import Detail from "./Detail.jsx";
 import Search from "./Searchs/Search.jsx";
 
+
 export {
     Landing,
     Home,

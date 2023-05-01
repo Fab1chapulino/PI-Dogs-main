@@ -1,4 +1,4 @@
-.Landing{
+#Landing{
     background-image:url(assets/cheemsFondOficial.jpg);
     background-repeat:no-repeat;
     background-size:cover;
@@ -22,11 +22,11 @@
         background-position:0 75%;
     }
 }
-.landing_center{
+#landing_center{
     display:flex;
     border-radius:2em;
 }
-.welcome{
+#welcome{
     background-color:white;
     border-radius:2em 0 0 2em;
     padding:0 2vw;
@@ -34,16 +34,16 @@
     flex-direction:column;
     justify-content:center;
 }
-.goHome{
+#goHome{
     text-decoration:none;
     color:white;
     background-color:#003882;
     padding:1vh 1vw;
     border-radius:2em;
 }
-.goHome:active{
+#goHome:active{
     text-decoration:underline;
 }
-.img{
+#img{
     border-radius:0 2em 2em 0;
 }

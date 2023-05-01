@@ -4,14 +4,14 @@ import blueCheems from "./assets/blueCheems.jpg"
 
 
 export default function Landing(){
-    return (<div className={styles.Landing}>
-        <div className={styles.landing_center}>
-            <div className={styles.welcome}>
+    return (<div id={styles.Landing}>
+        <div id={styles.landing_center}>
+            <div id={styles.welcome}>
                 <h1>Welcome to Dogos.</h1>
-                <NavLink to="/home/1" className={styles.goHome}>Home</NavLink>
+                <NavLink to="/home/1" id={styles.goHome}>Home</NavLink>
             </div>
             <div>
-                <img src={blueCheems} alt="blueCheems" className={styles.img}/>
+                <img src={blueCheems} alt="blueCheems" id={styles.img}/>
             </div>
         </div>
             

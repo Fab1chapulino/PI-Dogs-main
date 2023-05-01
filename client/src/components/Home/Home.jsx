@@ -1,8 +1,10 @@
 import Cards from "./Cards";
 import Options from "./Options";
+import Dogos from "./Dogos"
 import {useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 import {useParams, NavLink, useHistory} from "react-router-dom";
+import styles from "../../css/Home.module.css";
 
 export default function Home(){
     const left="<";
@@ -60,31 +62,41 @@ export default function Home(){
 
 
     return (<div>
-        <div>
-        <Options />
-            <div>
-                <span onClick={goLeft}>{left}</span>
-                {
+        <Dogos/>
+        <div id={styles.Home}>
+        
+         <Options />
+          <div id={styles.Cards}>
+             <div id={styles.slider}>
+                    <span onClick={goLeft} className={styles.changePage}>{left}</span>
+                    <div className={styles.pagesContenetor}>
+                        {
+                        
+                            pages.map((param)=>{
+                                return <NavLink to={`/home/${param}`} key={param} className={page===param?styles.pageSelected:styles.pages}>
+                                    {param}
+                                    </NavLink>
+                            })
+                        }
+                    </div>
                     
-                    pages.map((page)=>{
-                        return <span key={page}><NavLink to={`/home/${page}`}>{page}</NavLink></span>
-                    })
-                }
-                <span onClick={goRight}>{right}</span>
-            </div>
+                    <span onClick={goRight} className={styles.changePage}>{right}</span>
+             </div>
 
-            {dogs.length && <Cards dogs={dogs}/>}
+             {dogs.length && <Cards dogs={dogs}/>}
 
-            <div>
-                <span  onClick={goLeft}>{left}</span>
-                {
-                    
-                    pages.map((page)=>{
-                        return <span key={page}><NavLink to={`/home/${page}`}>{page}</NavLink></span>
-                    })
-                }
-                <span onClick={goRight}>{right}</span>
-            </div>
+             <div>
+                    <span  onClick={goLeft} className={styles.changePage}>{left}</span>
+                    {
+                        
+                        pages.map((param)=>{
+                            return <NavLink key={param} to={`/home/${param}`} className={page===param?styles.pageSelected:styles.pages}>{param}</NavLink>
+                        })
+                    }
+                    <span onClick={goRight} className={styles.changePage}>{right}</span>
+             </div>
+          </div>
+            
         </div>
     </div>)
 }

@@ -1,0 +1,90 @@
+#Nav{
+    background-color:#00014D;
+    display:flex;
+    width:100vw;
+    position:fixed;
+    top:0;
+    z-index:2;
+}
+#listHiden{
+    list-style:none;
+    padding:0;
+    margin:0;
+    position:fixed;
+    background-color:#003882;
+    min-height:100vh;
+    margin-left:-24vw;
+    animation-name:show;
+    animation-duration:0.5s;
+    animation-fill-mode: forwards;
+}
+#listShowed{
+    list-style:none;
+    padding:0;
+    margin:0;
+    position:fixed;
+    background-color:#003882;
+    min-height:100vh;
+    animation-name:hide;
+    animation-duration:0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes show{
+    from{
+        margin-left:-24vw;
+    }
+    to{
+        margin-left:0;
+    }
+}
+@keyframes hide{
+    from{
+        margin-left:0;
+    }
+    to{
+        margin-left:-24vw;
+    }
+}
+
+.links{
+    padding:0.5vh 5vw;
+    border-bottom:solid #00014D;
+    display:block;
+    text-decoration:none;
+    color:#00014D;
+    text-align:left;
+}
+.visited{
+    padding:0.5vh 5vw;
+    border-bottom:solid white;
+    display:block;
+    text-decoration:none;
+    color:white;
+    text-align:left;
+}
+
+#menuIcon{
+    padding-left:0.5vw;
+    margin:0;
+    max-width:3vw;
+}
+
+#inputSearch{
+    display:flex;
+    align-items:center;
+    margin-left:20%;
+}
+#inputSearch input{
+    border-radius:2em;
+}
+#inputSearch label{
+    background-color: #99d9ea;
+    padding:0.5vh 0.5vw;
+    border-radius:2em;
+    border:solid white 1px;
+    margin:0 0.5vw;
+    font-weight:bold;
+}
+#inputSearch:active label{
+    text-decoration:underline;
+}

@@ -144,7 +144,7 @@ export default function rootReducer( state=initialState, {type, payload} ){
         case "GET_TEMPERAMENTS":
             return {
                 ...state,
-                temperaments:[...payload.slice(0,6)]
+                temperaments:[...payload]
             }
         default:
             return state;

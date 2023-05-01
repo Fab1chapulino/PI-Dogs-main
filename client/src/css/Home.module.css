@@ -1,0 +1,51 @@
+#Home{
+    display:flex;
+    flex-direction:row-reverse;
+    position:relative;
+    top:35vh;
+}
+#slider{
+    display:flex;
+    justify-content:center;
+}
+.pagesContenetor{
+    margin:0;
+    padding:0;
+    border-top:solid;
+}
+.pages{
+    text-decoration:none;
+    color:white;
+    background-color:#003882;
+    padding:0.5vh 0.5vh;
+    border-right:solid white 1px;
+    max-width:1vh;
+    margin:0;
+}
+.pageSelected{
+    margin:0;
+    text-decoration:none;
+    color:#003882;
+    background-color:white;
+    border:solid #003882 1px;
+    padding:0.5vh 0.5vh;
+    box-shadow:-2px 2px 2px black, 2px 2px 2px black;
+}
+.changePage{
+    color:white;
+    background-color:#003882;
+    padding:0.5vh 0.5vh;
+    border-right:solid white 1px;
+    cursor:pointer;
+    margin:0 1vh;
+}
+.changePage:active{
+    color:#003882;
+    background-color:white;
+    border:solid #003882 1px;
+}
+#Cards{
+    margin-right:26vw;
+    margin-top:1.5vh;
+    margin-bottom:1.5vh;
+}

@@ -1,0 +1,19 @@
+#Dogos{
+    background-image:url(assets/cheemsFondOficial.jpg);
+    min-height:35vh;
+    min-width:100vw;
+    animation-name:moverCheems;
+    animation-duration:10s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+    position:fixed;
+    z-index:1;
+}
+@keyframes moverCheems {
+    from {
+        background-position:0 30%;
+    }
+    to {
+        background-position:0 75%;
+    }
+}
