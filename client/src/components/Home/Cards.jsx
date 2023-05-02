@@ -1,5 +1,4 @@
 import Card from "./Card";
-import styles from "../../css/Home.module.css";
 
 export default function Cards({dogs}){
     return (

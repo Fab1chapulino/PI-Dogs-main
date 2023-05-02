@@ -80,7 +80,7 @@ export default function Options(){
                             <div id={styles.temperaments}>
 
                                 {temperaments.length && temperaments.map( (temp, i) => {
-                                    return <div key={i} id={styles.temps}>
+                                    return <div key={i} className={styles.temps}>
                                         {filters_orders.temps.includes(temp)
                                         ?<input type="checkbox" name="temps" id={temp} value={temp}  checked onChange={(e)=> handleFiltersOrders(e)}/>
                                         :<input type="checkbox" name="temps" id={temp} value={temp} onChange={(e)=> handleFiltersOrders(e)}/>

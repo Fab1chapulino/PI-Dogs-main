@@ -8,9 +8,7 @@
     padding-bottom:5vh;
     background-color:white;
 }
-#id{
-    height:auto;
-}
+
 .titles{
     font-size:2em;
     color:#003882;
@@ -39,7 +37,7 @@
 #temperaments{
     height:auto;
 }
-#temps{
+.temps{
     text-align:left;
 }
 .selectedOrder{

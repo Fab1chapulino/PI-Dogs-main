@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {postDogThunk} from "../redux/thunkFunctions.js";
 import validate from "../validations.js";
 import {useHistory} from "react-router-dom";
+import styles from "../css/Create.module.css";
 
 export default function Create(){
     //hooks
@@ -127,12 +128,6 @@ export default function Create(){
 
     useEffect(()=>{
         if(message.component === "CreateForm"){
-            
-                /* dispatch(generateMessage({
-                    message:message.content,
-                    component:"Cards",
-                    status:message.status
-                })) */
                 history.push("/home/1")
             }
     },[message])
@@ -144,78 +139,99 @@ export default function Create(){
     },[error])
 
     console.log(history)
+
+
+
+
+
+
+
+
+
+
     //Rendering
-    return (<div>
-        {error.component==="CreateForm" && error.status === 400? <h2>{error.message}</h2>:null}
-        <button onClick={()=>history.goBack()}>Go back</button>
-        <h1>Este es el form create</h1>
-        <form onSubmit={(e)=>handleSubmit(e)}>
-            <div>
-                <h2>Name</h2>
-                <input type="text" id="name" name="name" value={input.name} onChange={(e)=>handleInputChange(e)}/>
-                <p>{errors.name && errors.name}</p>
-            </div>
+    return (<div id={styles.FormCreate}>
+        {error.component==="CreateForm" && error.status === 400?<h2 id={styles.errorMessage}>
+            {error.message} <span onClick={()=> document.getElementById(styles.errorMessage).style.display="none"}> x</span></h2> :null}
+        
+        <div id={styles.form}>
+            <button onClick={()=>history.goBack()} className={styles.buttons}>Go back</button>
+            <h1 id={styles.title}>Create a breed.</h1>
+            <form onSubmit={(e)=>handleSubmit(e)}>
+                <div>
+                    <h2 className={styles.subTitles}>Name.</h2>
+                    <input type="text" id="name" name="name" value={input.name} onChange={(e)=>handleInputChange(e)}/>
+                    <p className={styles.errors}>{errors.name && errors.name}</p>
+                </div>
 
-            <div>
-                <h2>Temperaments</h2>
-                {
-                temperaments.length &&
-                    temperaments.map((temp,i)=>{
-                    return ( <div key={i}>
-                            <input name="temperaments" id={i+1} type="checkbox" value={temp} onChange={(e)=>handleInputChange(e)}/>
-                            <label for={i+1}>{temp}</label>
-                        </div>)
-                    })
-                }
-                {errors.temperaments && errors.temperaments}
-            </div>
+                <div>
+                    <h2 className={styles.subTitles}>Temperaments.</h2>
+                    <div id={styles.tempsFather}>
+                        <div id={styles.temps}>
+                            {
+                            temperaments.length &&
+                                temperaments.map((temp,i)=>{
+                                return ( <div key={i}>
+                                        <input name="temperaments" id={i+1} type="checkbox" value={temp} onChange={(e)=>handleInputChange(e)}/>
+                                        <label for={i+1}>{temp}</label>
+                                    </div>)
+                                })
+                            }
+                        </div>
 
-            <div>
-                <h2>Height(ft)</h2>
-                <label>Min</label><br/>
-                <input type="range" id="minHeight" min="0.2" max="2.95" step="0.1" name="height" value={input.height.minHeight} onChange={(e)=>handleInputChange(e)} />
-                <span>{input.height.minHeight}</span>
-                <br/>
-                <label>Max</label><br/>
-                <input type="range" id="maxHeight" min="0.2" max="2.95" step="0.1" name="height" value={input.height.maxHeight} onChange={(e)=>handleInputChange(e)}/>
-                <span>{input.height.maxHeight}</span>
-                <p>{errors.height && errors.height}</p>
-            </div>
-            
+                    </div>
+                    
+                    <p className={styles.errors}>{errors.temperaments && errors.temperaments}</p>
+                </div>
+                
+                <div>
+                    <h2 className={styles.subTitles}>Height(ft).</h2>
+                    <label>Min.</label><br/>
+                    <input type="range" id="minHeight" min="0.2" max="2.95" step="0.1" name="height" value={input.height.minHeight} onChange={(e)=>handleInputChange(e)} />
+                    <span>{input.height.minHeight}</span>
+                    <br/>
+                    <label>Max.</label><br/>
+                    <input type="range" id="maxHeight" min="0.2" max="2.95" step="0.1" name="height" value={input.height.maxHeight} onChange={(e)=>handleInputChange(e)}/>
+                    <span>{input.height.maxHeight}</span>
+                    <p className={styles.errors}>{errors.height && errors.height}</p>
+                </div>
+                
 
-            <div>
-                <h2>Weight(lb)</h2>
-                <label>Min</label><br/>
-                <input type="range" id="minWeight" min="2.2" max="220.5" step="0.1" name="weight" value={input.weight.minWeight} onChange={(e)=>handleInputChange(e)}/>
-                <span>{input.weight.minWeight}</span>
-                <br/>
-                <label>Max</label><br/>
-                <input type="range" id="maxWeight" min="2.2" max="220.5" step="0.1" name="weight" value={input.weight.maxWeight} onChange={(e)=>handleInputChange(e)}/>
-                <span>{input.weight.maxWeight}</span>
-                <p>{errors.weight && errors.weight}</p>
-            </div>
-            
+                <div>
+                    <h2 className={styles.subTitles}>Weight(lb).</h2>
+                    <label>Min.</label><br/>
+                    <input type="range" id="minWeight" min="2.2" max="220.5" step="0.1" name="weight" value={input.weight.minWeight} onChange={(e)=>handleInputChange(e)}/>
+                    <span>{input.weight.minWeight}</span>
+                    <br/>
+                    <label>Max.</label><br/>
+                    <input type="range" id="maxWeight" min="2.2" max="220.5" step="0.1" name="weight" value={input.weight.maxWeight} onChange={(e)=>handleInputChange(e)}/>
+                    <span>{input.weight.maxWeight}</span>
+                    <p className={styles.errors}>{errors.weight && errors.weight}</p>
+                </div>
+                
 
-            <div>
-                <h2>Life Span(average)</h2>
-                <label>Min</label><br/>
-                <input type="range" id="minLife" min="5" max="16" step="1" name="life_span" value={input.life_span.minLife} onChange={(e)=>handleInputChange(e)}/>
-                <span>{input.life_span.minLife}</span>
-                <br/>
-                <label>Max</label><br/>
-                <input type="range" id="maxLife" min="5" max="16" step="1" name="life_span" value={input.life_span.maxLife} onChange={(e)=>handleInputChange(e)}/>
-                <span>{input.life_span.maxLife}</span>
-                <p>{errors.life_span && errors.life_span}</p>
-            </div>
-            
+                <div>
+                    <h2 className={styles.subTitles}>Life Span(average).</h2>
+                    <label>Min.</label><br/>
+                    <input type="range" id="minLife" min="5" max="16" step="1" name="life_span" value={input.life_span.minLife} onChange={(e)=>handleInputChange(e)}/>
+                    <span>{input.life_span.minLife}</span>
+                    <br/>
+                    <label>Max.</label><br/>
+                    <input type="range" id="maxLife" min="5" max="16" step="1" name="life_span" value={input.life_span.maxLife} onChange={(e)=>handleInputChange(e)}/>
+                    <span>{input.life_span.maxLife}</span>
+                    <p className={styles.errors}>{errors.life_span && errors.life_span}</p>
+                </div>
+                
 
-            <div>
-                <label for="image">Image(url)</label>
-                <input type="text" id="image" name="image" value={input.image} onChange={(e)=>handleInputChange(e)}/>
-                <p>{errors.image && errors.image}</p>
-            </div>
-            <button type="submit">Dogmit</button>
-        </form>
+                <div>
+                    <label for="image">Image(url)</label>
+                    <input type="text" id="image" name="image" value={input.image} onChange={(e)=>handleInputChange(e)}/>
+                    <p className={styles.errors}>{errors.image && errors.image}</p>
+                </div>
+                <button type="submit" className={styles.buttons}>Dogmit</button>
+            </form>
+        </div>
+        
         
        
     </div>)

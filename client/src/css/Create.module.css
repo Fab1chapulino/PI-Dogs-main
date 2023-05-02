@@ -1,0 +1,72 @@
+#FormCreate{
+    display:flex;
+    justify-content:center;
+    background-image:url(assets/cheemsFondOficial.jpg);
+    background-size:contain;
+    animation-name:moveBackground;
+    animation-duration:10s;
+    animation-iteration-count:infinite;
+    animation-timing-function:linear;
+}
+@keyframes moveBackground {
+    from {
+        background-position:0 30%;
+    }
+    to {
+        background-position:0 -75%;
+    }
+}
+#tempsFather{
+    max-height:15vh;
+    overflow-y:scroll;
+}
+#temps{
+    height:auto;
+}
+#form{
+    text-align:left;
+    padding:10vh 2vw 5vh 2vw;
+    width:35vw;
+    background-color:white;
+}
+#title{
+    color:#003882;
+    text-align:center;
+}
+.subTitles{
+    color:#003882;
+}
+.errors{
+    color:red;
+    text-shadow:-2px 1px 3px red;
+}
+.buttons{
+    background-color:#003882;
+    color:white;
+    font-weight:bold;
+}
+.buttons:active{
+    text-decoration:underline;
+}
+#errorMessage{
+    width:80vw;
+    height:5vh;
+    padding:0 2vw;
+    position:fixed;
+    z-index:3;
+    margin-top:-6vh;
+    border:solid red;
+    background-color:rgb(248, 127, 127);
+    color:red;
+    cursor:default;
+    animation-name:showError;
+    animation-duration:0.5s;
+    animation-fill-mode: forwards;
+    display:flex;
+    justify-content:space-between;
+}
+@keyframes showError{
+    100%{
+        margin-top:0.5vh;
+    }
+}
