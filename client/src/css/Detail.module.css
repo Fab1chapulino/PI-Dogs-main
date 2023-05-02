@@ -1,0 +1,35 @@
+#detailContenetor{
+    padding:10vh 5vh;
+}
+#detail{
+    display:flex;
+    flex-direction:row-reverse;
+    justify-content:space-around;
+    padding:0;
+}
+#imgContenetor{
+    height:80vh;
+    display:flex;
+}
+#img{
+    width:50vw;
+    float:right;
+    border-radius:2em;
+    border:solid #003882;
+}
+#flexDetail{
+    margin-top:10vh;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+    padding:5vh;
+    height:80vh;
+    background-color:#003882;
+    color:white;
+    border:solid white;
+    border-radius:2em;
+    z-index:1;
+}
+#temperaments{
+    text-align:left;
+}

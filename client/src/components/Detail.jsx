@@ -1,6 +1,8 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 import {useParams, useHistory} from "react-router-dom";
+import styles from "../css/Detail.module.css";
+import stylesSearch from "../css/Search.module.css";
 
 export default function Detail(){
     //hooks
@@ -32,14 +34,31 @@ export default function Detail(){
     return (<div>
         {errorMessage.data
         ?<h1>{errorMessage.data}</h1>
-        :<div>
-            {/* <img src={detail.image} alt={detail.name}/> */}
-            <button onClick={()=>history.go(-1)}>go Back</button>
-            <h1>{detail.name}</h1>
-            <p>Weight:{detail.weight}</p>
-            <p>Height:{detail.height}</p>
-            <p>Temperaments:{detail.temperaments}</p>
-            <p>Life Span:{detail.life_span}</p>
+        :<div id={styles.detailContenetor}>
+            <div id={stylesSearch.goBackContenetor}>
+                <button onClick={()=>history.go(-1)} id={stylesSearch.goBack}>Go back</button>
+            </div>
+            
+            <div id={styles.detail}>
+                <div id={styles.imgContenetor}>
+                    <img src={detail.image} alt={detail.name} id={styles.img}/>
+                </div>
+                
+
+                <div id={styles.flexDetail}>
+                    <h1 id={styles.name}>{detail.name}</h1>
+                    <p><b>Weight: </b>{detail.weight}</p>
+                    <p><b>Height: </b>{detail.height}</p>
+                    <p><b>Life Span: </b>{detail.life_span}</p>
+                    <p id={styles.temperaments}><b>Temperaments: </b>{detail.temperaments}</p>
+
+                    <h2>Comparision Details</h2>
+                    <p><b>The oldest dog</b> alive is 30 years old</p>
+                    <p><b>The heaviest breed</b> weights up to 220lb</p>
+                    <p><b>The tallest breed</b> is up to 2.25ft long</p>
+                </div>
+            </div>
+     
         </div>
         }
         

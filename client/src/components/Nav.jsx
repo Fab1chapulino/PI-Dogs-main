@@ -33,7 +33,7 @@ export default function Nav(){
     return (<div id={styles.Nav}>
         <div>
             <img src={menuIcon}  alt="menuIcon" id={styles.menuIcon} onClick={()=>setShow(!show)}/>
-            <ul id={ show?styles.listHiden  : styles.listShowed}>
+            <ul id={ show?styles.listShowed  : styles.listHiden}>
                 <NavLink to="/home/1" className={history.location.pathname.includes("home")?styles.visited:styles.links}><li >Home</li></NavLink>
                 <NavLink to="/create" className={history.location.pathname.includes("create")?styles.visited:styles.links}><li >Create</li></NavLink>
             </ul>

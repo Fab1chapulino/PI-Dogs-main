@@ -30,18 +30,12 @@
     animation-fill-mode: forwards;
 }
 @keyframes show{
-    from{
-        margin-left:-24vw;
-    }
-    to{
-        margin-left:0;
+    100%{
+        margin:0;
     }
 }
 @keyframes hide{
-    from{
-        margin-left:0;
-    }
-    to{
+    100%{
         margin-left:-24vw;
     }
 }

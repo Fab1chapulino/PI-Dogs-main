@@ -2,11 +2,23 @@
     width:50vw;
     text-align:left;
     padding:1vh 1vw;
-    margin:2vh 0;
+    margin:2vh -70vw;
     background-color:#003882;
     border-radius:1em;
+    animation-name:slide;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
     transition-property:scale;
     transition-duration:0.2s;
+    border:solid;
+}
+@keyframes slide{
+    from {
+        margin:2vh -70vw;
+    }
+    to{
+        margin:2vh 0;
+    }
 }
 .Card:hover{
     scale:1.05;

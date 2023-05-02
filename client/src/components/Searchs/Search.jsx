@@ -2,6 +2,7 @@ import {useSelector} from "react-redux";
 import {useHistory} from "react-router-dom";
 import Results from "./Results";
 import {useState, useEffect} from "react";
+import styles from "../../css/Search.module.css";
 
 export default function Search(){
     //States
@@ -16,21 +17,21 @@ export default function Search(){
     },[searchDogs])
 
 
-    return (<div>
+    return (<div id={styles.Search}>
 
-        <div>
-                <button onClick={()=>history.go(-1)}>Go back</button>
+        <div id={styles.goBackContenetor}>
+                <button onClick={()=>history.go(-1)} id={styles.goBack}>Go back</button>
         </div>
         {
             
-        error.component==="search" && error.status===400
-        ?<h1>{error.message}</h1>
-        : <div>
-            
-            <div>
-                {results.length && <Results results={results} />}
-            </div>
-        </div>
+            error.component==="search" && error.status===400
+            ?<h1>{error.message}</h1>
+            : <div>
+                
+                <div>
+                    {results.length && <Results results={results} />}
+                </div>
+         </div>
        
          }
         

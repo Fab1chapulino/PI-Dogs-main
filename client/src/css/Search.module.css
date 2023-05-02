@@ -1,0 +1,57 @@
+#Search{
+    padding-top:10vh;
+    height:100vh;
+    background-color:#99d9ea;
+}
+#goBackContenetor{
+    text-align:left;
+    padding-left:10%;
+}
+#goBack{
+    background-color:#003882;
+    color:white;
+    font-weight:bold;
+}
+#goBack:active{
+    text-decoration:underline;
+}
+#results{
+    margin-top:2vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+}
+.Cards{
+    transition-property:scale;
+    transition-duration:0.5s;
+    color:white;
+    
+}
+.Cards:hover{
+    scale:1.05;
+}
+.card{
+    background-color:#003882;
+    margin:0;
+    border-bottom:solid white 1px;
+    border-top:solid white 1px;
+    animation-name:slide;
+    animation-duration:1s;
+    animation-fill-mode: forwards;
+}
+@keyframes slide{
+    from{
+        margin-left:-50vw;
+    }
+    to{
+        margin-left:0;
+    }
+}
+.Links{
+    margin:0;
+    text-decoration:none;
+    color:white;
+}
+.Links:hover h2{
+    text-decoration:underline;
+}
