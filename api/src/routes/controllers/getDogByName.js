@@ -19,6 +19,7 @@ module.exports = async (req, res)=>{
         apiDogs = apiDogs.filter( dog => dog.temperaments)
         const dbDogs = await applySearch(query);
         const dogs = dbDogs.concat(apiDogs);
+        console.log(dogs, "<------dogs")
         if(dogs.length){
             res.status(200).json(dogs)
         }else{
