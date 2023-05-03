@@ -1,0 +1,38 @@
+#success{
+    position:fixed;
+    top:0px;
+    z-index:3;
+    border:solid green;
+    color:green;
+    background-color:rgb(110, 168, 110);
+    width:95vw;
+    margin:0 1vw;
+    padding:0 1vw;
+    display:flex;
+    justify-content:space-between;
+    cursor:default;
+    animation-name:show;
+    animation-duration:0.5s;
+    animation-fill-mode: forwards;
+    margin-top:-6vh;
+}
+#errorConnection{
+    width:95vw;
+    margin:0 1vw;
+    padding:0 1vw;
+    position:fixed;
+    z-index:4;
+    border:solid red;
+    background-color:rgb(248, 127, 127);
+    color:red;
+    margin-top:-6vh;
+    cursor:default;
+    animation-name:show;
+    animation-duration:0.5s;
+    animation-fill-mode: forwards;
+}
+@keyframes show{
+    100%{
+        margin-top:4vh;
+    }
+}

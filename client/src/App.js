@@ -1,4 +1,4 @@
-import './App.css';
+import styles from "./css/App.module.css";
 import {Switch, Route, useLocation} from "react-router-dom";
 import {Landing, Home, Nav, Create, Detail, Search} from "./components/index";
 import {useSelector} from "react-redux";
@@ -11,8 +11,12 @@ function App() {
 
   return (
     <div className="App">
-      {error.status===500? <p>{error.message}</p>:null}
-      {message.status===200? <p>{message.content}</p>:null}
+      {error.status===500? <p id={styles.errorConnection}>{error.message}</p>:null}
+
+
+      {message.status===200? <p id={styles.success}>
+        {message.content} 
+        <span onClick={()=> document.getElementById(styles.success).style.display="none"}>X</span></p>:null}
       {location.pathname!=="/"?<Nav/>:null}
       <Switch>
         <Route exact path="/">

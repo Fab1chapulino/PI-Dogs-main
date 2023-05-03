@@ -13,7 +13,6 @@ export default function Create(){
     const history = useHistory();
     //states
     const [submit, setSubmit]=useState(false);
-   // const [message, setMessage]=useState(error)
     const [errors, setErrors] = useState({
         name:"",
         image:"",
@@ -128,7 +127,7 @@ export default function Create(){
     },[errors])
 
     useEffect(()=>{
-        if(message.component === "CreateForm"){
+        if(message.component === "CreateForm" && message.status===200 && submit){
                 history.push("/home/1")
             }
     },[message])
@@ -139,26 +138,18 @@ export default function Create(){
             }
     },[error])
 
-    console.log(history)
-
-
-
-
-
-
-
-
-
-
     //Rendering
     return (<div id={styles.FormCreate}>
         {error.component==="CreateForm" && error.status === 400?<h2 id={styles.errorMessage}>
             {error.message} <span onClick={()=> document.getElementById(styles.errorMessage).style.display="none"}> x</span></h2> :null}
         
         <div id={styles.form}>
-            <button onClick={()=>history.goBack()} className={styles.buttons}>Go back</button>
+            <button onClick={()=>history.goBack()} id={styles.goBack}>Go back</button>
             <h1 id={styles.title}>Create a breed.</h1>
+
+            {/* ----------Form --------------*/}
             <form onSubmit={(e)=>handleSubmit(e)}>
+                
                 <div>
                     <h2 className={styles.subTitles}>Name.</h2>
                     <input type="text" id="name" name="name" value={input.name} onChange={(e)=>handleInputChange(e)}/>
@@ -229,7 +220,7 @@ export default function Create(){
                     <input type="text" id="image" name="image" value={input.image} onChange={(e)=>handleInputChange(e)}/>
                     <p className={styles.errors}>{errors.image && errors.image}</p>
                 </div>
-                <button type="submit" className={styles.buttons}>Dogmit</button>
+                <button id={styles.submit} disabled={error.status===500?"true":"false"}>Dogmit</button>
             </form>
         </div>
         
@@ -240,10 +231,3 @@ export default function Create(){
        
     </div>)
 }
-
-/* "name": "Affenpinscher",
-    "image": "https://cdn2.thedogapi.com/images/BJa4kxc4X.jpg",
-    "height": "9 - 11.5",
-    "wight": "6 - 13",
-    "temperaments": "Stubborn, Curious, Playful, Adventurous, Active, Fun-loving",
-    "life_span": "10 - 12 years" */
