@@ -4,6 +4,7 @@ import {postDogThunk} from "../redux/thunkFunctions.js";
 import validate from "../validations.js";
 import {useHistory} from "react-router-dom";
 import styles from "../css/Create.module.css";
+import Dogos from "./Home/Dogos.jsx";
 
 export default function Create(){
     //hooks
@@ -232,6 +233,9 @@ export default function Create(){
             </form>
         </div>
         
+        <div id={styles.dogos}>
+            
+        </div>
         
        
     </div>)

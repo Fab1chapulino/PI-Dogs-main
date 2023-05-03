@@ -1,19 +1,28 @@
 #FormCreate{
     display:flex;
     justify-content:center;
-    background-image:url(assets/cheemsFondOficial.jpg);
-    background-size:contain;
-    animation-name:moveBackground;
-    animation-duration:10s;
-    animation-iteration-count:infinite;
-    animation-timing-function:linear;
+    background-color:#00014d;
+    margin-top:-3vh;
+    max-width:100vw;
 }
-@keyframes moveBackground {
-    from {
-        background-position:0 30%;
+#dogos{
+    width:50vw;
+    border:solid;
+    background-image:url(assets/otroPixelDog.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    animation-name:moveTongue;
+    animation-duration:1s;
+    animation-iteration-count:infinite;
+    animation-timing-function:steps(12, end);
+    border-right:solid;
+}
+@keyFrames moveTongue{
+    0%{
+        background-image:url(assets/otroPixelDog.png);
     }
-    to {
-        background-position:0 -75%;
+    50%{
+        background-image:url(assets/otroPixelDog2.png);
     }
 }
 #tempsFather{
@@ -28,6 +37,7 @@
     padding:10vh 2vw 5vh 2vw;
     width:35vw;
     background-color:white;
+    border-right:solid;
 }
 #title{
     color:#003882;
