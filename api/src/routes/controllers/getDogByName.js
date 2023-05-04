@@ -23,18 +23,18 @@ module.exports = async (req, res)=>{
         if(dogs.length){
             res.status(200).json(dogs)
         }else{
-            throw new Error("COUDN'T FIND THAT BREED")
+            throw new Error("SORRY, WE COUDN'T FIND THAT BREED")
         }
 
     }catch(err){
         const {message} = err;
         switch(message){
-            case "COUDN'T FIND THAT BREED":
-                res.status(400).send("COUDN'T FIND THAT BREED")
+            case "SORRY, WE COUDN'T FIND THAT BREED":
+                res.status(400).send(message)
             break;
             default:
                 console.log(message)
-                res.status(500).send("CONNECTION ERROR")
+                res.status(500).send(message)
         }
     }
 }
