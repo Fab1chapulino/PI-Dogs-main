@@ -1,4 +1,9 @@
-import {getDogsByName, getDogs, generateError,generateMessage, geTemperaments} from "./actions.js";
+import {getDogsByName,
+     getDogs,
+    generateError,
+    generateMessage,
+    geTemperaments,
+    clearSearch} from "./actions.js";
 import axios from "axios";
 
 export function searchDogs(query){

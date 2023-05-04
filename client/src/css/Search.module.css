@@ -1,7 +1,11 @@
 #Search{
     padding-top:10vh;
     height:100vh;
-    background-color:#99d9ea;
+}
+#searchLoading{
+    padding-top:10vh;
+    height:100vh;
+    background-color:#00014d;
 }
 #goBackContenetor{
     text-align:left;
@@ -38,6 +42,7 @@
     animation-name:slide;
     animation-duration:1s;
     animation-fill-mode: forwards;
+    text-align:center;
 }
 @keyframes slide{
     from{
@@ -54,4 +59,8 @@
 }
 .Links:hover h2{
     text-decoration:underline;
+}
+#errorMessage{
+    color:white;
+    text-align:center;
 }

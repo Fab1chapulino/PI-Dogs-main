@@ -1,10 +1,11 @@
 import {NavLink} from "react-router-dom";
 import {searchDogs} from "../redux/thunkFunctions.js";
-import {useState} from "react";
-import {useDispatch} from "react-redux";
+import {useState, useEffect} from "react";
+import {useDispatch, useSelector} from "react-redux";
 import  {useHistory} from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import menuIcon from "./assets/menuIcon2.png"
+import {clearSearch} from "../redux/actions.js";
 
 export default function Nav(){
     //States
@@ -22,12 +23,22 @@ export default function Nav(){
         const {code, type} = e;
         console.log(e)
         if((query.length && type==="click") || (query.length && code==="Enter")){
+            dispatch(clearSearch())
             dispatch(searchDogs(query));
             if(history.location.pathname !== "/search"){
-                history.push("/search")
+                history.push(`/search/${query}`)
             } 
         }
     }
+
+    useEffect(()=>{
+        if(history.location.pathname.includes("/search")){
+            const breed = history.location.pathname.split("/").pop()
+            setQuery(breed)
+            dispatch(searchDogs(breed))
+        }
+    },[])
+
 
 
     return (<div id={styles.Nav}>

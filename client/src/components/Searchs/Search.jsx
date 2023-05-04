@@ -3,6 +3,8 @@ import {useHistory} from "react-router-dom";
 import Results from "./Results";
 import {useState, useEffect} from "react";
 import styles from "../../css/Search.module.css";
+import Loading from "../Loading.jsx";
+import cheemsLlorando from "../assets/CheemsLlorando.jpg"
 
 export default function Search(){
     //States
@@ -17,7 +19,8 @@ export default function Search(){
     },[searchDogs])
 
 
-    return (<div id={styles.Search}>
+    return (<div id={results.length?styles.Search:styles.searchLoading
+    }>
 
         <div id={styles.goBackContenetor}>
                 <button onClick={()=>history.go(-1)} id={styles.goBack}>Go back</button>
@@ -25,13 +28,17 @@ export default function Search(){
         {
             
             error.component==="search" && error.status===400
-            ?<h1>{error.message}</h1>
-            : <div>
+            ?<div id={styles.errorMessage}>
+                <h1 >{error.message}</h1>
+                <img src={cheemsLlorando} alt="cheems crying"/>
+                <p>Create a new one in the Create section!</p>
+            </div>
+            : results.length?<div>
                 
                 <div>
                     {results.length && <Results results={results} />}
                 </div>
-         </div>
+            </div> : <Loading />
        
          }
         

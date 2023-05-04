@@ -31,7 +31,7 @@ function App() {
         <Route path="/detail/:id">
           <Detail/>
         </Route>
-        <Route path="/search">
+        <Route path="/search/:query">
           <Search/>
         </Route>
       </Switch>

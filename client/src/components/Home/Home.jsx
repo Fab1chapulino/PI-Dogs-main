@@ -1,6 +1,7 @@
 import Cards from "./Cards";
 import Options from "./Options";
 import Dogos from "./Dogos"
+import Loading from "../Loading.jsx";
 import {useSelector} from "react-redux";
 import {useState, useEffect} from "react";
 import {useParams, NavLink, useHistory} from "react-router-dom";
@@ -9,6 +10,8 @@ import styles from "../../css/Home.module.css";
 export default function Home(){
     const left="<";
     const right=">";
+
+    
 
     //states
     const [pages, setPages]=useState([]);
@@ -60,13 +63,12 @@ export default function Home(){
         }
     }
 
-
     return (<div>
         <Dogos/>
         <div id={styles.Home}>
         
          <Options />
-          <div id={styles.Cards}>
+         {dogs.length?<div id={styles.Cards}>
              <div id={styles.slider}>
                     <span onClick={goLeft} className={styles.changePage}>{left}</span>
                     <div className={styles.pagesContenetor}>
@@ -85,7 +87,7 @@ export default function Home(){
 
              {dogs.length && <Cards dogs={dogs}/>}
 
-             <div>
+             <div id={styles.slider}>
                     <span  onClick={goLeft} className={styles.changePage}>{left}</span>
                     {
                         
@@ -95,7 +97,8 @@ export default function Home(){
                     }
                     <span onClick={goRight} className={styles.changePage}>{right}</span>
              </div>
-          </div>
+          </div>:<Loading/>}
+          
             
         </div>
     </div>)

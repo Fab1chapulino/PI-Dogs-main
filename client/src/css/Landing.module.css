@@ -40,6 +40,7 @@
     background-color:#003882;
     padding:1vh 1vw;
     border-radius:2em;
+    text-align:center;
 }
 #goHome:active{
     text-decoration:underline;

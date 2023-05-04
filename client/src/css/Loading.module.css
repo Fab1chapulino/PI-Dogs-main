@@ -1,0 +1,21 @@
+#loading{
+    background-color: #00014D;
+    width:100vw;
+    height:70vh;
+}
+#loading h1{
+    color:white;
+    font-weight:bold;
+    font-size:4em;
+    padding-left:5vw;
+    padding-top:5vh;
+}
+#cheemsMamado{
+    position:fixed;
+    top:70vh;
+}
+#cheems{
+    position:fixed;
+    top:60vh;
+    left:55vw;
+}

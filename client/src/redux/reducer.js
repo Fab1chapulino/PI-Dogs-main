@@ -30,6 +30,11 @@ const initialState={
 
 export default function rootReducer( state=initialState, {type, payload} ){
     switch(type){
+        case "CLEAR_SEARCH":
+            return {
+                ...state,
+                searchDogs:[]
+            }
         case "SEARCH_DOGS":
             return {
                 ...state,

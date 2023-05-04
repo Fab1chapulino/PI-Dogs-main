@@ -34,3 +34,8 @@ export function geTemperaments(temps){
         payload:temps
     }
 }
+export function clearSearch(){
+    return {
+        type:"CLEAR_SEARCH"
+    }
+}
