@@ -3,7 +3,7 @@ import {Switch, Route, useHistory, useLocation} from "react-router-dom";
 import {Landing, Home, Nav, Create, Detail, Search} from "./components/index";
 import {useSelector} from "react-redux";
 import axios from "axios"
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://pi-dogs-main-production-7e12.up.railway.app/";
 
 function App() {
   //Hooks
