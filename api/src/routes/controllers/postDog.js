@@ -28,19 +28,7 @@ const postDog= async (req, res)=>{
             life_span
         })
         await newDog.addTemperaments(temperaments)
-        /* const findDog = await Dog.findOne({
-            attributes:["id","name", "weight", "image"],
-            where:{
-                name:name
-            },
-            include:{
-                model:Temperament,
-                attributes:["name"],
-                through:{
-                    attributes:[]
-                }
-            }
-        }) */
+
         res.status(200).json("POSTED DOG SUCCESFULLY")
     }catch(err){
         const {message} = err
