@@ -1,11 +1,14 @@
 import styles from "./css/App.module.css";
-import {Switch, Route, useHistory} from "react-router-dom";
+import {Switch, Route, useHistory, useLocation} from "react-router-dom";
 import {Landing, Home, Nav, Create, Detail, Search} from "./components/index";
 import {useSelector} from "react-redux";
+import axios from "axios"
+axios.defaults.baseURL = "http://localhost:3001";
 
 function App() {
   //Hooks
   const history = useHistory();
+  const location = useLocation();
   const {error, message} = useSelector(s=>s);
 
 
@@ -17,7 +20,7 @@ function App() {
       {message.status===200? <p id={styles.success}>
         {message.content} 
         <span onClick={()=> document.getElementById(styles.success).style.display="none"}>X</span></p>:null}
-      {history.location.pathname!=="/"?<Nav/>:null}
+      {location.pathname!=="/"?<Nav/>:null}
       <Switch>
         <Route exact path="/">
             <Landing/>

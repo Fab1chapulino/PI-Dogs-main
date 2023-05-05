@@ -10,7 +10,7 @@ export function searchDogs(query){
     return async function(dispatch, getState){
         try{
             const state = getState();
-            const {data} = await axios.get(`http://localhost:3001/dogs/name?query=${query}`);
+            const {data} = await axios.get(`/dogs/name?query=${query}`);
             const breeds = data.filter( b => state.allDogsCopy.some( element => element.id===b.id))
 
             if(!breeds.length) throw new Error("Sorry, We Coudn't find that breed")
@@ -39,7 +39,7 @@ export function searchDogs(query){
 }
 export async function getDogsThunk(dispatch, getState){
     try{
-        const {data} = await axios.get("http://localhost:3001/dogs")
+        const {data} = await axios.get("/dogs")
         console.log(data)
         dispatch(getDogs(data))
         dispatch(generateError({
@@ -58,7 +58,7 @@ export async function getDogsThunk(dispatch, getState){
 export function postDogThunk(breed){
     return async function(dispatch, getState){
         try{
-            const {data} = await axios.post("http://localhost:3001/dogs", breed);
+            const {data} = await axios.post("/dogs", breed);
             dispatch(getDogsThunk)
             dispatch(generateMessage({
                 content:data,
@@ -78,7 +78,7 @@ export function postDogThunk(breed){
 }
 export async function getTemperamentsThunk(dispatch, getState){
     try{
-        const {data} = await axios.get("http://localhost:3001/temperaments")
+        const {data} = await axios.get("/temperaments")
         let tempNames = data.map( diet => diet.name)
         console.log(tempNames)
         dispatch(geTemperaments(tempNames))
