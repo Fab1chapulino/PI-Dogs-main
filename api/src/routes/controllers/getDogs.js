@@ -29,7 +29,7 @@ module.exports= async (req,res)=>{
             }
         })
 
-        res.status(200).json(dbDogs.concat(apiDogs))
+        res.status(200).json(dbDogs.reverse().concat(apiDogs))
     }catch(err){
         console.log(err.message)
         res.status(500).send("CONNECTION ERROR. Please refresh the page.");

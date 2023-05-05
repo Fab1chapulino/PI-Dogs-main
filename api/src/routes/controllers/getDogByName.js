@@ -34,7 +34,7 @@ module.exports = async (req, res)=>{
             break;
             default:
                 console.log(message)
-                res.status(500).send(message)
+                res.status(500).send("CONNECTION ERROR. Please reload page")
         }
     }
 }
