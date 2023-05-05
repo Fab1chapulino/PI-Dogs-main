@@ -1,6 +1,8 @@
 import Card from "./Card";
 
 export default function Cards({dogs}){
+    console.log(dogs[0].temperaments, "From db")
+    console.log(dogs[1].temperaments, "From Api")
     return (
         <div>
             {

@@ -3,26 +3,36 @@ import {getDogsByName,
     generateError,
     generateMessage,
     geTemperaments,
-    clearSearch} from "./actions.js";
+    } from "./actions.js";
 import axios from "axios";
 
 export function searchDogs(query){
     return async function(dispatch, getState){
         try{
+            const state = getState();
             const {data} = await axios.get(`http://localhost:3001/dogs/name?query=${query}`);
-            //console.log(data);
-            dispatch(getDogsByName(data));
-            dispatch(generateError({
-                message:"",
-                component:"search",
-                status:200
-            }))
+            const breeds = data.filter( b => state.allDogsCopy.some( element => element.id===b.id))
+
+            if(!breeds.length) throw new Error("Sorry, We Coudn't find that breed")
+
+            dispatch(getDogsByName(breeds));
+            
+
          }catch(error){
-            dispatch(generateError({
-                message:error.response.data,
-                component:"search",
-                status:error.response.status
-            }))
+            if(error.response){
+                dispatch(generateError({
+                    message:error.response.data,
+                    component:"search",
+                    status:error.response.status
+                }))
+            }else{
+                dispatch(generateError({
+                    message:error.message,
+                    component:"search",
+                    status:400
+                }))
+            }
+            
         } 
       
     }

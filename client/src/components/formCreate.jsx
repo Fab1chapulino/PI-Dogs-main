@@ -133,7 +133,7 @@ export default function Create(){
     },[message])
 
     useEffect(()=>{
-            if(error.status === 400){
+            if(error.status === 400 && error.status==="CreateForm"){
                 setErrors(validate(input))
             }
     },[error])
@@ -220,7 +220,11 @@ export default function Create(){
                     <input type="text" id="image" name="image" value={input.image} onChange={(e)=>handleInputChange(e)}/>
                     <p className={styles.errors}>{errors.image && errors.image}</p>
                 </div>
-                <button id={styles.submit} disabled={error.status===500?"true":"false"}>Dogmit</button>
+                {error.status===500
+                    ?<button id={styles.submit} disabled>Dogmit</button>
+                    :<button id={styles.submit}>Dogmit</button>
+                }
+                
             </form>
         </div>
         
