@@ -39,3 +39,9 @@ export function clearSearch(){
         type:"CLEAR_SEARCH"
     }
 }
+export function setNumOfSearches(searches){
+    return {
+        type:"SET_SEARCHES",
+        payload:searches
+    }
+}

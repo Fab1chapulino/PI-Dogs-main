@@ -18,9 +18,9 @@ export default function Home(){
     const [pagesCP, setPagesCP]=useState([]);
     //hooks
     const history = useHistory();
-    const {allDogs,error} = useSelector(s=>s);
-
+    const {allDogs, options_config, allDogsCopy } = useSelector(s=>s);
     let {page}  = useParams();
+
     page=parseInt(page);
     const dogs = allDogs.slice((page-1)*8, page*8)
 
@@ -35,13 +35,12 @@ export default function Home(){
 
      useEffect(()=>{
         if(pagesCP.slice(page-1, page+6).length<7){
-            console.log(pagesCP.slice(page-1, page+6).length)
             setPages([...pagesCP.slice(pagesCP.length-7, pagesCP.length)])
         }else{
             setPages([...pagesCP.slice(page-1, page+6)])
         }
 
-    },[pagesCP]) 
+    },[pagesCP])
     
     //Extra Logic
     function goLeft(){
@@ -68,7 +67,9 @@ export default function Home(){
         <div id={styles.Home}>
         
          <Options />
-         {dogs.length?<div id={styles.Cards}>
+         {allDogsCopy.length
+         ?allDogs.length
+         ?<div id={styles.Cards}>
              <div id={styles.slider}>
                     <span onClick={goLeft} className={styles.changePage}>{left}</span>
                     <div className={styles.pagesContenetor}>
@@ -97,7 +98,11 @@ export default function Home(){
                     }
                     <span onClick={goRight} className={styles.changePage}>{right}</span>
              </div>
-          </div>:<Loading/>}
+          </div>
+
+          :<div id={styles.message}><h1>There aren't created breeds yet</h1> <p>Create a new one in the create section!</p></div>
+
+          :<Loading/>}
           
             
         </div>

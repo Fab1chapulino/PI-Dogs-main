@@ -11,6 +11,7 @@ export function searchDogs(query){
         try{
             const state = getState();
             const {data} = await axios.get(`/dogs/name?query=${query}`);
+
             const breeds = data.filter( b => state.allDogsCopy.some( element => element.id===b.id))
 
             if(!breeds.length) throw new Error("Sorry, We Coudn't find that breed")

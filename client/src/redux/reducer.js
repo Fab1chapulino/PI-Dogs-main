@@ -25,7 +25,8 @@ const initialState={
         temps:[],
         origin:"",
         order:[]
-    }
+    },
+    searches:1
 }
 
 export default function rootReducer( state=initialState, {type, payload} ){
@@ -34,6 +35,11 @@ export default function rootReducer( state=initialState, {type, payload} ){
             return {
                 ...state,
                 searchDogs:[]
+            }
+        case "SET_SEARCHES":
+            return {
+                ...state,
+                searches:payload
             }
         case "SEARCH_DOGS":
             return {

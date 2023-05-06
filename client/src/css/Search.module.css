@@ -1,11 +1,7 @@
 #Search{
     padding-top:10vh;
     height:100vh;
-}
-#searchLoading{
-    padding-top:10vh;
-    height:100vh;
-    background-color:#00014d;
+        background-color:#00014d;
 }
 #goBackContenetor{
     text-align:left;

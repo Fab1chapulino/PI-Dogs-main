@@ -1,20 +1,20 @@
 import {NavLink} from "react-router-dom";
 import {searchDogs} from "../redux/thunkFunctions.js";
 import {useState, useEffect} from "react";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import  {useHistory} from "react-router-dom";
 import styles from "../css/Nav.module.css";
 import menuIcon from "./assets/menuIcon2.png"
-import {clearSearch, generateError} from "../redux/actions.js";
+import {clearSearch, generateError, setNumOfSearches} from "../redux/actions.js";
 
 export default function Nav(){
     //States
     const [query, setQuery] = useState("");
     const [show, setShow] = useState(true);
-    const [searches, setSearches] =useState(1);
     //hooks
     const dispatch = useDispatch();
     const history = useHistory();
+    const {searches} = useSelector(s=>s)
 
     function handleInputChange(e){
         const {value} = e.target;
@@ -22,7 +22,6 @@ export default function Nav(){
     }
     function onSearch(e){
         const {code, type} = e;
-        console.log(e)
         if((query.length && type==="click") || (query.length && code==="Enter")){
             dispatch(clearSearch())
             dispatch(generateError({
@@ -31,7 +30,7 @@ export default function Nav(){
                 status:200
             }))
             dispatch(searchDogs(query));
-            setSearches(searches+1)
+            dispatch(setNumOfSearches(searches+1))
             
             if(history.location.pathname !== "/search"){
                 history.push(`/search/${query}?searches=${searches}`)

@@ -50,3 +50,12 @@
     margin-bottom:1.5vh;
     width:55vw;
 }
+#message{
+    border-radius:2em;
+    color:white;
+    margin-right:35vw;
+    margin-top:1.5vh;
+    padding:2vh 1vw;
+    text-align:center;
+    background-color:#003882;
+}

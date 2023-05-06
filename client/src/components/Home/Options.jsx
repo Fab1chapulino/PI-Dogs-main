@@ -6,7 +6,7 @@ import styles from "../../css/Options.module.css";
 export default function Options(){
     //hooks
     const dispatch = useDispatch();
-    const {alphaAscend, alphaDescend, weightAscend, weightDescend, temperaments, options_config} = useSelector( s => s)
+    const {alphaAscend, alphaDescend, weightAscend, weightDescend, temperaments, options_config, allDogsCopy} = useSelector( s => s)
 
     //States
     const [filters_orders, setFilters_Orders] = useState({
@@ -55,8 +55,9 @@ export default function Options(){
      },[])
 
     useEffect(()=>{
+        console.log(filters_orders)
         dispatch(filterOrder(filters_orders))
-    },[filters_orders]) 
+    },[filters_orders, allDogsCopy]) 
 
     return (<div id={styles.OptionsFather}>
         <div id={styles.options}>
