@@ -47,8 +47,8 @@ export default function Detail(){
 
                 <div id={styles.flexDetail}>
                     <h1 id={styles.name}>{detail.name}</h1>
-                    <p><b>Weight: </b>{detail.weight}</p>
-                    <p><b>Height: </b>{detail.height}</p>
+                    <p><b>Weight(lb): </b>{detail.weight}</p>
+                    <p><b>Height(ft): </b>{detail.height}</p>
                     <p><b>Life Span: </b>{detail.life_span}</p>
                     <p id={styles.temperaments}><b>Temperaments: </b>{detail.temperaments}</p>
 

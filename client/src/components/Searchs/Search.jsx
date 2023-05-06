@@ -9,23 +9,28 @@ import cheemsLlorando from "../assets/CheemsLlorando.jpg"
 export default function Search(){
     //States
     const [results, setResults]= useState([])
-    const [searches, setSearches] = useState(null)
+    //const [searches, setSearches] = useState(null)
     //hooks
     const history = useHistory();
     const {searchDogs, error} = useSelector( s=> s);
     //useEffects
-    useEffect(()=>{
+    /* useEffect(()=>{
         const {search} = history.location;
         setResults([...searchDogs])
         setSearches(parseInt(search[search.length-1])*-1)
         console.log(history)
-    },[searchDogs])
+    },[]) */
+    function goBack(){
+        const {search} = history.location;
+        const numOfSearches = parseInt(search[search.length-1])*-1;
+        history.go(numOfSearches)
+    }
 
 
     return (<div id={results.length?styles.Search:styles.searchLoading}>
 
         <div id={styles.goBackContenetor}>
-                <button onClick={()=> history.go(searches)} id={styles.goBack}>Go back</button>
+                <button onClick={()=> goBack} id={styles.goBack}>Go back</button>
         </div>
         {
             
