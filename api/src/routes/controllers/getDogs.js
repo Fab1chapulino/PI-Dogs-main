@@ -5,8 +5,8 @@ const {Dog, Temperament}= require("../../db");
 
 module.exports= async (req,res)=>{
     try{
+        //Fetching breeds from api
         const {data}= await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`);
-
         const apiDogs=data.map(dog=>{
             return {
                 id:dog.id,
@@ -16,8 +16,8 @@ module.exports= async (req,res)=>{
                 weight:dog.weight.imperial
             }
         })
-        console.log(apiDogs.length, "apiDogs")
 
+        //Getting breeds from DB
         const dbDogs = await Dog.findAll({
             attributes:["id","name", "image", "weight"],
             include:{
@@ -30,6 +30,7 @@ module.exports= async (req,res)=>{
         })
 
         res.status(200).json(dbDogs.reverse().concat(apiDogs))
+    //Errors
     }catch(err){
         console.log(err.message)
         res.status(500).send("CONNECTION ERROR. Please refresh the page.");
