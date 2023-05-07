@@ -7,12 +7,11 @@ const {Dog, Temperament}= require("../../db");
 module.exports = async (req,res)=>{
     try{
         const {id}=req.params;
-        
+        //In case is a Not Created breed
         if(id.length<36){
-            console.log(typeof id)
             const {data} = await axios.get(`https://api.thedogapi.com/v1/breeds?api_key=${API_KEY}`)
             const detail = data.find( doggie => doggie.id==id);
-            console.log(detail, "detail")
+            //Lazy Loading
             const dog = {
                 name:detail.name,
                 image:detail.image.url,
@@ -23,6 +22,7 @@ module.exports = async (req,res)=>{
             }
             res.status(200).json(dog);
         }else{
+            //In case is Created breed
             const dog = await Dog.findOne({
                 where:{
                     id:id
@@ -38,16 +38,9 @@ module.exports = async (req,res)=>{
             });
             res.status(200).json(dog);
         }
-        
+        //Errors
     }catch(err){
         console.log(err.message)
         res.status(500).send("CONNECTION ERROR");
     }
 }
-/* ID.
--  Imagen.
--  Nombre.
--  Altura.
--  Peso.
--  Temperamentos.
--  Años de vida. */
