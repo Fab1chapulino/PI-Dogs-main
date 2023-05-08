@@ -51,9 +51,8 @@
     width:55vw;
 }
 #message{
-    border-radius:2em;
+    border-radius:1em;
     color:white;
-    margin-right:35vw;
     margin-top:1.5vh;
     padding:2vh 1vw;
     text-align:center;

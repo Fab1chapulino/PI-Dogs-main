@@ -4,7 +4,6 @@ import {postDogThunk} from "../redux/thunkFunctions.js";
 import validate from "../validations.js";
 import {useHistory} from "react-router-dom";
 import styles from "../css/Create.module.css";
-import Dogos from "./Home/Dogos.jsx";
 
 export default function Create(){
     //hooks
@@ -109,6 +108,7 @@ export default function Create(){
         }
         generateErrors(e);
     }
+    //Check for errors before submitting
     function handleSubmit(e){
         e.preventDefault();
         setErrors({
@@ -118,6 +118,7 @@ export default function Create(){
     }
 
     /* -----------------useEffects-------------------- */
+    //Setting submit value
     useEffect(()=>{
         if(Object.values(errors).find(v=>v.length)){
             setSubmit(false)
@@ -126,12 +127,14 @@ export default function Create(){
         }
     },[errors])
 
+    //If submit was successful
     useEffect(()=>{
         if(message.component === "CreateForm" && message.status===200 && submit){
                 history.push("/home/1")
             }
     },[message])
 
+    /* If there was an error submitting the form */
     useEffect(()=>{
             if(error.status === 400 && error.status==="CreateForm"){
                 setErrors(validate(input))
@@ -140,22 +143,23 @@ export default function Create(){
 
     //Rendering
     return (<div id={styles.FormCreate}>
+        {/* Errors */}
         {error.component==="CreateForm" && error.status === 400?<h2 id={styles.errorMessage}>
             {error.message} <span onClick={()=> document.getElementById(styles.errorMessage).style.display="none"}> x</span></h2> :null}
-        
+        {/* Go back */}
         <div id={styles.form}>
             <button onClick={()=>history.goBack()} id={styles.goBack}>Go back</button>
             <h1 id={styles.title}>Create a breed.</h1>
 
             {/* ----------Form --------------*/}
             <form onSubmit={(e)=>handleSubmit(e)}>
-                
+                {/* Name */}
                 <div>
                     <h2 className={styles.subTitles}>Name.</h2>
                     <input type="text" id="name" name="name" value={input.name} onChange={(e)=>handleInputChange(e)}/>
                     <p className={styles.errors}>{errors.name && errors.name}</p>
                 </div>
-
+                {/* Temperaments */}
                 <div>
                     <h2 className={styles.subTitles}>Temperaments.</h2>
                     <div id={styles.tempsFather}>
@@ -175,7 +179,7 @@ export default function Create(){
                     
                     <p className={styles.errors}>{errors.temperaments && errors.temperaments}</p>
                 </div>
-                
+                {/* Height */}
                 <div>
                     <h2 className={styles.subTitles}>Height(ft).</h2>
                     <label>Min.</label><br/>
@@ -188,7 +192,7 @@ export default function Create(){
                     <p className={styles.errors}>{errors.height && errors.height}</p>
                 </div>
                 
-
+                {/* Weight */}
                 <div>
                     <h2 className={styles.subTitles}>Weight(lb).</h2>
                     <label>Min.</label><br/>
@@ -201,7 +205,7 @@ export default function Create(){
                     <p className={styles.errors}>{errors.weight && errors.weight}</p>
                 </div>
                 
-
+                {/* Life_Span */}
                 <div>
                     <h2 className={styles.subTitles}>Life Span(average).</h2>
                     <label>Min.</label><br/>
@@ -214,12 +218,13 @@ export default function Create(){
                     <p className={styles.errors}>{errors.life_span && errors.life_span}</p>
                 </div>
                 
-
+                {/* Image */}
                 <div>
                     <label for="image">Image(url)</label>
                     <input type="text" id="image" name="image" value={input.image} onChange={(e)=>handleInputChange(e)}/>
                     <p className={styles.errors}>{errors.image && errors.image}</p>
                 </div>
+                {/* Disabled button in case there is a connection error */}
                 {error.status===500
                     ?<button id={styles.submit} disabled>Dogmit</button>
                     :<button id={styles.submit}>Dogmit</button>

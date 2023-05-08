@@ -15,7 +15,7 @@ export default function Detail(){
     useEffect(()=>{
         async function getDetail(){
             try{
-                const {data}= await axios.get( `https://pi-dogs-main-production-24db.up.railway.app/dogs/detail/${id}`)
+                const {data}= await axios.get(`https://pi-dogs-main-production-24db.up.railway.app/dogs/detail/${id}`)
             console.log(data)
             if(typeof data.id==="string") data.temperaments= data.temperaments.map(temp=>temp.name).join(", ")
             setDetail({
@@ -23,7 +23,7 @@ export default function Detail(){
             })
             }catch(err){
                 console.log(err.response)
-                setErrorMessage(err.response)
+                setErrorMessage(err.response.data)
             }
         }
         
@@ -33,7 +33,7 @@ export default function Detail(){
     
     return (<div>
         {errorMessage.length
-        ?<h1>{errorMessage}</h1>
+        ?<h1 id={styles.error}>{errorMessage}</h1>
         :<div id={styles.detailContenetor}>
             <div id={stylesSearch.goBackContenetor}>
                 <button onClick={()=>history.go(-1)} id={stylesSearch.goBack}>Go back</button>

@@ -66,7 +66,6 @@ export default function Home(){
         
          <Options />
          {allDogsCopy.length
-         ?dogs.length
          ?<div id={styles.Cards}>
              {/* ------------------Pages_Slider------------------ */}
              <div id={styles.slider}>
@@ -86,8 +85,10 @@ export default function Home(){
              </div>
                 
                 {/* -----------------Cards-------------- */}
-             {dogs.length && <Cards dogs={dogs}/>}
-                
+                {dogs.length
+                ?dogs.length && <Cards dogs={dogs}/>
+                :<h1 id={styles.message}>Didn't find breeds on this page</h1>}
+
                 {/* ------------------Pages_Slider------------- */}
              <div id={styles.slider}>
                     <span  onClick={goLeft} className={styles.changePage}>{left}</span>
@@ -103,7 +104,7 @@ export default function Home(){
              </div>
           </div>
 
-          :<div id={styles.message}><h1>Didn't find breeds in this page</h1></div>
+          
 
           :<Loading/>}
           
