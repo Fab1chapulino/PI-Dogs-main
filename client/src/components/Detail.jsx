@@ -32,8 +32,8 @@ export default function Detail(){
     },[])
     
     return (<div>
-        {errorMessage.data
-        ?<h1>{errorMessage.data}</h1>
+        {errorMessage.length
+        ?<h1>{errorMessage}</h1>
         :<div id={styles.detailContenetor}>
             <div id={stylesSearch.goBackContenetor}>
                 <button onClick={()=>history.go(-1)} id={stylesSearch.goBack}>Go back</button>
