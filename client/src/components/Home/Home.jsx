@@ -35,11 +35,6 @@ export default function Home(){
     },[allDogs])
 
      useEffect(()=>{
-       /*  if(pagesCP.slice(page-1, page+6).length<7){
-            setPages([...pagesCP.slice(pagesCP.length-7, pagesCP.length)])
-        }else{
-            setPages([...pagesCP.slice(page-1, page+6)])
-        } */
         setPages([...pagesCP.slice(page-1, page+6)])
     },[pagesCP])
     
