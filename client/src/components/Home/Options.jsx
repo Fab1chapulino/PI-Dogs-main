@@ -6,7 +6,15 @@ import styles from "../../css/Options.module.css";
 export default function Options(){
     //hooks
     const dispatch = useDispatch();
-    const {alphaAscend, alphaDescend, weightAscend, weightDescend, temperaments, options_config, allDogsCopy} = useSelector( s => s)
+    const {
+         alphaAscend,
+         alphaDescend,
+         weightAscend,
+         weightDescend,
+         temperaments,
+         options_config,
+         allDogsCopy
+        } = useSelector( s => s)
 
     //States
     const [filters_orders, setFilters_Orders] = useState({
@@ -17,7 +25,6 @@ export default function Options(){
     })
 
     function handleFiltersOrders(e, orderApplied=[]){
-       // console.log(filters, "<--- filters")
         const {name, value, checked} = e.target;
         switch(name){
             case "temps":
@@ -50,12 +57,11 @@ export default function Options(){
     }
 
      /* ----------------------useEffect------------------- */
-     useEffect(()=>{
+     /* useEffect(()=>{
         setFilters_Orders(options_config)
-     },[])
+     },[]) */
 
     useEffect(()=>{
-        console.log(filters_orders)
         dispatch(filterOrder(filters_orders))
     },[filters_orders, allDogsCopy]) 
 

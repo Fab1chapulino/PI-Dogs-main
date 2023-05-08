@@ -66,8 +66,9 @@ export default function Home(){
         
          <Options />
          {allDogsCopy.length
-         ?allDogs.length
+         ?dogs.length
          ?<div id={styles.Cards}>
+             {/* ------------------Pages_Slider------------------ */}
              <div id={styles.slider}>
                     <span onClick={goLeft} className={styles.changePage}>{left}</span>
                     <div className={styles.pagesContenetor}>
@@ -83,22 +84,26 @@ export default function Home(){
                     
                     <span onClick={goRight} className={styles.changePage}>{right}</span>
              </div>
-
+                
+                {/* -----------------Cards-------------- */}
              {dogs.length && <Cards dogs={dogs}/>}
-
+                
+                {/* ------------------Pages_Slider------------- */}
              <div id={styles.slider}>
                     <span  onClick={goLeft} className={styles.changePage}>{left}</span>
-                    {
-                        
-                        pages.map((param)=>{
-                            return <NavLink key={param} to={`/home/${param}`} className={page===param?styles.pageSelected:styles.pages}>{param}</NavLink>
-                        })
-                    }
+                    <div className={styles.pagesContenetor}>
+                        {
+                            pages.map((param)=>{
+                                return <NavLink key={param} to={`/home/${param}`} className={page===param?styles.pageSelected:styles.pages}>{param}</NavLink>
+                            })
+                        }
+                    </div>
+                    
                     <span onClick={goRight} className={styles.changePage}>{right}</span>
              </div>
           </div>
 
-          :<div id={styles.message}><h1>There aren't created breeds yet</h1> <p>Create a new one in the create section!</p></div>
+          :<div id={styles.message}><h1>Didn't find breeds in this page</h1></div>
 
           :<Loading/>}
           
