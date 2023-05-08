@@ -2,6 +2,8 @@ import {NavLink} from "react-router-dom";
 import styles from "../../css/Card.module.css"
 
 export default function Card({id, name, image, temperaments, weight}){
+
+    //Made cards to show up to seven temperaments
     if(temperaments !== undefined){
         if(temperaments.split(", ").length > 7){
             temperaments = temperaments.split(", ").slice(0, 6)
@@ -10,6 +12,7 @@ export default function Card({id, name, image, temperaments, weight}){
         }
     } 
     
+    //rendering
     return (<div className={styles.Card}>
         <NavLink to={`/detail/${id}`} className={styles.links}>
             <img src={image} alt={name} id={styles.img}/>

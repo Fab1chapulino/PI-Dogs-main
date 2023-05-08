@@ -12,7 +12,6 @@ export default function Home(){
     const right=">";
 
     
-
     //states
     const [pages, setPages]=useState([]);
     const [pagesCP, setPagesCP]=useState([]);
@@ -21,11 +20,13 @@ export default function Home(){
     const {allDogs, options_config, allDogsCopy } = useSelector(s=>s);
     let {page}  = useParams();
 
+    //Getting eight breeds
     page=parseInt(page);
     const dogs = allDogs.slice((page-1)*8, page*8)
 
     //useEffects
     useEffect(()=>{
+        //Set the number of pages
         let pagesVariable = [];
         for(let i=1; i<=Math.ceil(allDogs.length/8); i++){
             pagesVariable.push(i)
@@ -34,17 +35,16 @@ export default function Home(){
     },[allDogs])
 
      useEffect(()=>{
-        if(pagesCP.slice(page-1, page+6).length<7){
+       /*  if(pagesCP.slice(page-1, page+6).length<7){
             setPages([...pagesCP.slice(pagesCP.length-7, pagesCP.length)])
         }else{
             setPages([...pagesCP.slice(page-1, page+6)])
-        }
-
+        } */
+        setPages([...pagesCP.slice(page-1, page+6)])
     },[pagesCP])
     
     //Extra Logic
     function goLeft(){
-        console.log(pages)
        if(page!==1){
         if(page===pages[0]){    
             setPages([...pagesCP.slice(page-2, page+5)])
@@ -53,7 +53,6 @@ export default function Home(){
        } 
     }
     function goRight(){
-        console.log(pages)
         if( page !== Math.ceil(allDogs.length/8) ){
             if(page===pages[pages.length-1]){
                 setPages([...pagesCP.slice(page-6, page+1)])
