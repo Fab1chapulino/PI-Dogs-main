@@ -17,7 +17,7 @@ export default function Home(){
     const [pagesCP, setPagesCP]=useState([]);
     //hooks
     const history = useHistory();
-    const {allDogs, options_config, allDogsCopy } = useSelector(s=>s);
+    const {allDogs, allDogsCopy } = useSelector(s=>s);
     let {page}  = useParams();
 
     //Getting eight breeds
@@ -35,7 +35,11 @@ export default function Home(){
     },[allDogs])
 
      useEffect(()=>{
-        setPages([...pagesCP.slice(page-1, page+6)])
+        if(pagesCP.slice(page-1, page+6).length<7){
+            setPages([...pagesCP.slice(pagesCP.length-7, pagesCP.length)])
+        }else{
+            setPages([...pagesCP.slice(page-1, page+6)])
+        } 
     },[pagesCP])
     
     //Extra Logic
