@@ -1,18 +1,14 @@
-import * as dotenv from 'dotenv';
 import styles from "./css/App.module.css";
-import {Switch, Route, useHistory, useLocation} from "react-router-dom";
+import {Switch, Route, useLocation} from "react-router-dom";
 import {Landing, Home, Nav, Create, Detail, Search} from "./components/index";
 import {useSelector} from "react-redux";
 import axios from "axios"
 
-dotenv.config();
-
-axios.defaults.baseURL = process.env.API_SERVER;
+axios.defaults.baseURL = "https://pi-dogs-main-production-936c.up.railway.app/";
 
 
 function App() {
   //Hooks
-  const history = useHistory();
   const location = useLocation();
   const {error, message} = useSelector(s=>s);
 
