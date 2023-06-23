@@ -1,11 +1,13 @@
-require('dotenv').config();
+import * as dotenv from 'dotenv';
 import styles from "./css/App.module.css";
 import {Switch, Route, useHistory, useLocation} from "react-router-dom";
 import {Landing, Home, Nav, Create, Detail, Search} from "./components/index";
 import {useSelector} from "react-redux";
 import axios from "axios"
-const { API_SERVER } = process.env;
-axios.defaults.baseURL =  API_SERVER;
+
+dotenv.config();
+
+axios.defaults.baseURL = process.env.API_SERVER;
 
 
 function App() {
