@@ -1,9 +1,11 @@
+require('dotenv').config();
 import styles from "./css/App.module.css";
 import {Switch, Route, useHistory, useLocation} from "react-router-dom";
 import {Landing, Home, Nav, Create, Detail, Search} from "./components/index";
 import {useSelector} from "react-redux";
 import axios from "axios"
-axios.defaults.baseURL =  "https://pi-dogs-main-production-24db.up.railway.app/";
+const { API_SERVER } = process.env;
+axios.defaults.baseURL =  API_SERVER;
 
 
 function App() {
