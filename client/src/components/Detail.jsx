@@ -8,14 +8,14 @@ export default function Detail(){
     //hooks
     const [detail, setDetail]=useState({});
     const {id}=useParams();
-    const history = useHistory();
+    const history = useHistory()
     //states
     const [errorMessage, setErrorMessage] = useState("")
 
     useEffect(()=>{
         async function getDetail(){
             try{
-                const {data}= await axios.get(`https://pi-dogs-main-production-24db.up.railway.app/dogs/detail/${id}`)
+                const {data}= await axios.get(`/dogs/detail/${id}`)
             console.log(data)
             if(typeof data.id==="string") data.temperaments= data.temperaments.map(temp=>temp.name).join(", ")
             setDetail({
